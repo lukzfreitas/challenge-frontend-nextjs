@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
-import Input from './src/components/Inputs/Input'
+import InputSearch from '../src/components/Inputs/InputSearch'
 
 const HomePage: NextPage = () => {
   return (    
-    <Input id='search' placeholder='O que deseja encontrar?' iconUrl='/search.png' />
+    <InputSearch id='search' placeholder='O que deseja encontrar?' iconUrl='/search.png' />
   )
 }
 
