@@ -1,7 +1,8 @@
 import Image from "next/image";
+import { ImageStyle } from "./styled";
 
 interface ImageProps {
-    src: string;    
+    src: string;
     width: string;
     height: string;
     alt?: string;
@@ -9,7 +10,10 @@ interface ImageProps {
 
 const ImageComponent = (props: ImageProps) => {
     return (
-        <Image src={props.src} alt={props.alt} width={props.width} height={props.height} />
+        <ImageStyle width={props.width}>
+            <Image src={props.src} alt={props.alt} width={props.width} height={props.height} />
+        </ImageStyle>
+
     )
 }
 

@@ -6,6 +6,8 @@ interface ButtonProps {
 
     type?: 'primary' | 'secondary';
 
+    width?: string;
+
     label: string;
 
     onClick?: () => void;
@@ -14,6 +16,7 @@ interface ButtonProps {
 const Button = ({
     disabled = false,
     type = 'primary',    
+    width = '100%',
     label,
     ...props
 }: ButtonProps) => {
@@ -28,6 +31,7 @@ const Button = ({
             onClick={() => handleClick()}
             disabled={disabled}
             type={type}
+            width={width}
         >
             <LabelStyle type={type}>
                 {label}

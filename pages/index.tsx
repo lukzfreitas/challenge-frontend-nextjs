@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
-import InputSearch from '../src/components/Inputs/InputSearch'
+import Header from '../src/components/Surfaces'
 
 const HomePage: NextPage = () => {
   return (    
-    <InputSearch id='search' placeholder='O que deseja encontrar?' iconUrl='/search.png' />
+    <Header></Header>
   )
 }
 
