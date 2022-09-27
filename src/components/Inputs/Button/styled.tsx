@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
-export const ButtonStyle = styled.div((props: { disabled: boolean, type: 'primary' | 'secondary' }) => ({
+interface PropsButtonStyle {
+    type: 'primary' | 'secondary',
+    disabled?: boolean,
+    width?: string
+}
+
+export const ButtonStyle = styled.div((props: PropsButtonStyle) => ({    
     display: "flex",    
     justifyContent: "center",
     alignItems: "center",
     padding: "16px",
     gap: "10px",
-    width: "72px",
+    width: props.width,
     height: "51px",
     left: "16px",
     top: "16px",    
@@ -18,7 +24,7 @@ export const ButtonStyle = styled.div((props: { disabled: boolean, type: 'primar
     }
 }));
 
-export const LabelStyle = styled.label((props: {type: 'primary' | 'secondary'}) => ({
+export const LabelStyle = styled.label((props: PropsButtonStyle) => ({
     color: props.type === "primary" ? "#FFFFFF" : "#2A7AE4",
     width: "40px",
     height: "19px",    

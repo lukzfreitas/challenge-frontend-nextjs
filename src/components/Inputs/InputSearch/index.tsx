@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState } from "react";
 import ImageComponent from "../../DataDisplay/Image";
 import { FormControl, Icon, InputStyle } from "./styled";
@@ -6,7 +7,8 @@ interface InputSearchProps {
     id: string;
     value?: string;
     placeholder?: string;
-    iconUrl?: string
+    iconUrl?: string;
+    width?: string;
 }
 
 const InputSearch = ({
@@ -24,9 +26,10 @@ const InputSearch = ({
                 onChange={e => handleChangeValue(e)}
                 placeholder={props.placeholder}
                 type='text'
+                width="393px"
             />
             <Icon>
-                <ImageComponent src={props.iconUrl} alt="search" width="17px" height="17px" />
+                <ImageComponent src="/search.png" alt="search" width="17px" height="17px" />
             </Icon>
         </FormControl>
     );
