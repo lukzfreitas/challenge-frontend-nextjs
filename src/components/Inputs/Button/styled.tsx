@@ -20,14 +20,13 @@ export const ButtonStyle = styled.div((props: PropsButtonStyle) => ({
     border: props.type === "secondary" ? "1px solid #2A7AE4" : "none",    
     backgroundColor: props.type === "primary" ? "#2A7AE4" : "transparent",
     ":hover": {
+        "transition": "all 0.2s ease-in-out",
         "backgroundColor": props.type === "primary" ? "#5595E9" : "#D4E4FA"
     }
 }));
 
 export const LabelStyle = styled.label((props: PropsButtonStyle) => ({
-    color: props.type === "primary" ? "#FFFFFF" : "#2A7AE4",
-    width: "40px",
-    height: "19px",    
+    color: props.type === "primary" ? "#FFFFFF" : "#2A7AE4",    
     fontStyle: "normal",
     fontWeight: 400,
     fontSize: "16px",

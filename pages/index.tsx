@@ -1,9 +1,15 @@
 import type { NextPage } from 'next'
-import Header from '../src/components/Surfaces'
+import AppBar from '../src/components/Surfaces/AppBar'
+import Banner from '../src/components/Surfaces/Banner'
+import { Column, Row } from '../styles/globals'
 
 const HomePage: NextPage = () => {
-  return (    
-    <Header></Header>
+  return (
+    <Column>    
+      <AppBar />
+      <Banner />
+    </Column>
+
   )
 }
 

@@ -3,17 +3,33 @@ import { ImageStyle } from "./styled";
 
 interface ImageProps {
     src: string;
-    width: string;
     height: string;
+    width: string;
     alt?: string;
+    responsive?: boolean;
+    children: any;
 }
 
 const ImageComponent = (props: ImageProps) => {
     return (
-        <ImageStyle width={props.width}>
-            <Image src={props.src} alt={props.alt} width={props.width} height={props.height} />
-        </ImageStyle>
-
+        props.responsive ?
+            <ImageStyle>
+                <Image
+                    src={props.src}
+                    alt={props.alt}
+                    width={props.width}
+                    height={props.height}                    
+                    layout='responsive'
+                    objectFit='contain'
+                />
+                {props.children}
+            </ImageStyle>
+            : <Image
+                src={props.src}
+                alt={props.alt}
+                width={props.width}
+                height={props.height}
+            />
     )
 }
 
