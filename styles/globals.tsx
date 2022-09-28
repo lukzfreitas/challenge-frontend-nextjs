@@ -22,6 +22,11 @@ export const Row = styled.div<PropsRow>`
     padding: ${(p: PropsRow) => p.padding};
 `
 
+export const Column = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
 export const Col1 = styled.div<PropsCol>`
     display: "flex";
     flex-direction: column;

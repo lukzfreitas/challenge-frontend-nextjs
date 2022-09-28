@@ -1,9 +1,9 @@
-import { Col2, Row } from "../../../styles/globals";
-import ImageComponent from "../DataDisplay/Image";
-import Button from "../Inputs/Button";
-import InputSearch from "../Inputs/InputSearch";
+import { Col2, Row } from "../../../../styles/globals";
+import ImageComponent from "../../DataDisplay/Image";
+import Button from "../../Inputs/Button";
+import InputSearch from "../../Inputs/InputSearch";
 
-const Header = () => {
+const AppBar = () => {
     return (
         <Row alignItems="center" justifyContent="space-between" height="115px" padding="32px 64px">
             <Col2>
@@ -23,4 +23,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default AppBar;
