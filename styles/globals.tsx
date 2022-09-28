@@ -9,8 +9,9 @@ interface PropsRow {
 }
 
 interface PropsCol {
-    align?: string;
-    padding?: string;
+    justifyContent?: string;
+    alignItems?: string;    
+    padding?: string;    
 }
 
 export const Row = styled.div<PropsRow>`
@@ -31,7 +32,7 @@ export const Col1 = styled.div<PropsCol>`
     display: "flex";
     flex-direction: column;
     flex: "1 1 100%";
-    justify-content: ${(p: PropsCol) => p.align};
+    justify-content: ${(p: PropsCol) => p.justifyContent};
     padding: ${(p: PropsCol) => p.padding};
 `
 
@@ -39,7 +40,7 @@ export const Col2 = styled.div<PropsCol>`
     display: "flex";
     flex-direction: column;
     flex: "1 1 50%";
-    justify-content: ${(p: PropsCol) => p.align};
+    justify-content: ${(p: PropsCol) => p.justifyContent};
     padding: ${(p: PropsCol) => p.padding};
 `
 
@@ -47,6 +48,6 @@ export const Col3 = styled.div<PropsCol>`
     display: "flex";
     flex-direction: column;
     flex: "1 1 33%";
-    justify-content: ${(p: PropsCol) => p.align};    
+    justify-content: ${(p: PropsCol) => p.justifyContent};    
     padding: ${(p: PropsCol) => p.padding};
 `

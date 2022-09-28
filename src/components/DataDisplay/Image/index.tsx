@@ -1,20 +1,35 @@
 import Image from "next/image";
+import { ImageStyle } from "./styled";
 
 interface ImageProps {
     src: string;
     height: string;
     width: string;
-    alt?: string;    
+    alt?: string;
+    responsive?: boolean;
+    children: any;
 }
 
 const ImageComponent = (props: ImageProps) => {
     return (
-        <Image
-            src={props.src}
-            alt={props.alt}
-            width={props.width}
-            height={props.height}
-        />
+        props.responsive ?
+            <ImageStyle>
+                <Image
+                    src={props.src}
+                    alt={props.alt}
+                    width={props.width}
+                    height={props.height}                    
+                    layout='responsive'
+                    objectFit='contain'
+                />
+                {props.children}
+            </ImageStyle>
+            : <Image
+                src={props.src}
+                alt={props.alt}
+                width={props.width}
+                height={props.height}
+            />
     )
 }
 
