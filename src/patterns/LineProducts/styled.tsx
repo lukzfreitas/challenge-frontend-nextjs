@@ -14,7 +14,10 @@ export const LinkLineStyle = styled.label`
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: #2A7AE4;
+    color: #2A7AE4;    
+`
+
+export const SeeMoreStyled = styled.div`
     cursor: pointer;
 `
 

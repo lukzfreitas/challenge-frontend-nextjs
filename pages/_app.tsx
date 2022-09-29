@@ -1,5 +1,3 @@
-// import '../styles/globals.css'
-
 import { GlobalStyyled } from "../styles/globals"
 
 function MyApp({ Component, pageProps }) {

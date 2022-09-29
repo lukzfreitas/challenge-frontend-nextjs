@@ -1,6 +1,7 @@
 import ImageComponent from "../../DataDisplay/Image";
 import { Column } from "../../Grid/Column";
 import { Row } from "../../Grid/Row";
+import Link from "../../Navigation/Link";
 import Label from "../../Typograph/Label";
 
 interface CardProps {
@@ -17,7 +18,7 @@ const Card = (props: CardProps) => {
                 <ImageComponent src={props.image} height="290px" width="300px"></ImageComponent>
                 <Label text={props.label1} type="label1" />
                 <Label text={props.label2} type="label2" />
-                <Label text={props.label3} type="label3" />
+                <Link label={props.label3} onClick={() => { }} />
             </Column>
         </Row>
     )
