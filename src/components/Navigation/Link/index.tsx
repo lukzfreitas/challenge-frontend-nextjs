@@ -9,7 +9,13 @@ interface LinkProps {
 const Link = (props: LinkProps) => {
     return (
         <LinkStyle>
-            <Label text={props.label} type="label3" onClick={() => props.onClick()} />
+            <Label
+                text={props.label}
+                fontWeight={700}
+                fontSize={"16px"}
+                color={"#2A7AE4"}
+                onClick={() => props.onClick()}
+            />
         </LinkStyle>
     )
 }
