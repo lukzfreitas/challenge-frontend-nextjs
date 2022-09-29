@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { FormControl, InputStyled, LabelStyled } from "./styled"
+import { FormControl, LabelStyled, TextAreaStyled } from "./styled"
 
-interface InputProps {
+interface TextAreaProps {
     value: string;    
     label?: string;    
     width?: string;
@@ -10,7 +10,7 @@ interface InputProps {
     margin?: string;
 }
 
-export const Input = ({value = '', width = '100%', height = '56px', ...props} : InputProps) => {
+export const TextArea = ({value = '', width = '100%', height = '82px', ...props} : TextAreaProps) => {
 
     const [text, setText] = useState(value);    
 
@@ -21,10 +21,9 @@ export const Input = ({value = '', width = '100%', height = '56px', ...props} : 
             <LabelStyled>
                 {props.label}
             </LabelStyled> 
-            <InputStyled            
+            <TextAreaStyled          
                 value={text}
                 onChange={e => handleChangeValue(e)}                
-                type={props.type}
                 width={width}
                 height={height}
             />

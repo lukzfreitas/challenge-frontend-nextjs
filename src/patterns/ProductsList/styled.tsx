@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
-interface ListProductsStyle {    
-}
 
-export const ListProductsStyle = styled.div<ListProductsStyle>`
-        
+export const ListProductsStyled = styled.div`
+    margin: 0 0 64px 0;       
 `
 
 

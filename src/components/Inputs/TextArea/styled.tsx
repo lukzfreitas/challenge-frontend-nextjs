@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-interface FormControlProps {
+interface TextAreaProps {
     width?: string;
     height?: string;
     margin?: string;
 }
 
-export const InputStyled = styled.input<FormControlProps>`    
+export const TextAreaStyled = styled.textarea<TextAreaProps>`    
     background: #FFFFFF;
     border-radius: 4px;    
     font-size: 16px; 
@@ -17,7 +17,7 @@ export const InputStyled = styled.input<FormControlProps>`
         outline-color: transparent;            
         outline-width: 0;
     }    
-    width: ${(p: FormControlProps) => p.width};     
+    width: ${(p: TextAreaProps) => p.width};     
 `;
 
 export const LabelStyled = styled.label`
@@ -31,14 +31,14 @@ export const LabelStyled = styled.label`
     color: #A2A2A2; 
 `
 
-export const FormControl = styled.div<FormControlProps>`
-        margin: p;
-        padding: 8px;
-        background: #FFFFFF;
-        display: flex;
-        flex-direction: column;        
-        border: 0;
-        width: ${(p: FormControlProps) => p.width}; 
-        height: ${(p: FormControlProps) => p.height}; 
-        margin: ${(p: FormControlProps) => p.margin}; 
-    `;
+export const FormControl = styled.div<TextAreaProps>`
+    margin: p;
+    padding: 8px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;        
+    border: 0;
+    width: ${(p: TextAreaProps) => p.width}; 
+    height: ${(p: TextAreaProps) => p.height}; 
+    margin: ${(p: TextAreaProps) => p.margin}; 
+`;

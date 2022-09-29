@@ -4,6 +4,7 @@ import Card from "../../components/Surfaces/Card";
 import { Product } from "../../models/product";
 import { ThemeProduct } from "../../models/themeProduct";
 import ProductsLine from "../ProductsLine";
+import { ListProductsStyled } from "./styled";
 
 interface PropsProductsList {
     listThemeProdutc: ThemeProduct[];
@@ -11,7 +12,7 @@ interface PropsProductsList {
 
 const ProductsList = (props: PropsProductsList) => {
     return (
-        <>
+        <ListProductsStyled>
             {props.listThemeProdutc.map(item =>
                 <ColN nCols={1} padding="64px 152px 0px 152px">
                     <Row padding="16px 8px">
@@ -26,7 +27,7 @@ const ProductsList = (props: PropsProductsList) => {
                     </Row>
                 </ColN>
             )}
-        </>
+        </ListProductsStyled>
     )
 }
 
