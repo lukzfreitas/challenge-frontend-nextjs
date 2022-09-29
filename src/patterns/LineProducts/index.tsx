@@ -1,4 +1,4 @@
-import { Row } from "../../../styles/globals";
+import { Row } from "../../components/Grid/Row";
 import { LinkLineStyle, TitleLineStyle } from "./styled";
 
 interface LineProductsProps {

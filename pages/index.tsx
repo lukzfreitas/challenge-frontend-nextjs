@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
+import { Column } from '../src/components/Grid/Column'
 import AppBar from '../src/components/Surfaces/AppBar'
 import Banner from '../src/components/Surfaces/Banner'
 import { Product } from '../src/models/product'
 import { ThemeProduct } from '../src/models/themeProduct'
 import ListProducts from '../src/patterns/ListProducts'
-import { Column, Row } from '../styles/globals'
 
 const HomePage: NextPage = () => {
 

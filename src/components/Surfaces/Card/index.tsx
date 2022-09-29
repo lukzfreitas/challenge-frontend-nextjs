@@ -1,5 +1,6 @@
-import { Column, Row } from "../../../../styles/globals";
 import ImageComponent from "../../DataDisplay/Image";
+import { Column } from "../../Grid/Column";
+import { Row } from "../../Grid/Row";
 import Label from "../../Typograph/Label";
 
 interface CardProps {

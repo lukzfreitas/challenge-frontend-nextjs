@@ -1,4 +1,5 @@
-import { Col1, ColN, Row } from "../../../styles/globals";
+import { ColN } from "../../components/Grid/ColumnN";
+import { Row } from "../../components/Grid/Row";
 import Card from "../../components/Surfaces/Card";
 import { Product } from "../../models/product";
 import { ThemeProduct } from "../../models/themeProduct";
@@ -12,7 +13,7 @@ const ListProducts = (props: PropsListProducts) => {
     return (
         <>
             {props.listThemeProdutc.map(item =>
-                <Col1 padding="0px 152px">
+                <ColN nCols={1} padding="64px 152px 0px 152px">
                     <Row padding="16px 8px">
                         <LineProducts title={item.theme}></LineProducts>
                     </Row>
@@ -23,7 +24,7 @@ const ListProducts = (props: PropsListProducts) => {
                             </ColN>
                         ))}
                     </Row>
-                </Col1>
+                </ColN>
             )}
         </>
     )
