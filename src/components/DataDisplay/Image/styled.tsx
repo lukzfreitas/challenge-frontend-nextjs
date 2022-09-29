@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
-export const ImageStyle = styled.div`    
-    width: 100%;
-    height: 100%;
-    position: absolute;
+interface ImageStyledProps {
+    padding?: string;
+}
+
+export const ImageStyled = styled.div<ImageStyledProps>`    
+    padding: ${(p: ImageStyledProps) => p.padding};
 `
+
+

@@ -1,4 +1,5 @@
-import { Column, Col1, Row } from "../../../../styles/globals";
+import { Column } from "../../Grid/Column";
+import { Row } from "../../Grid/Row";
 import Button from "../../Inputs/Button";
 import SubTitle from "../../Typograph/SubTitle";
 import Title from "../../Typograph/Title";

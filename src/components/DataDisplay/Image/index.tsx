@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ImageStyle } from "./styled";
+import { ImageStyled } from "./styled";
 
 interface ImageProps {
     src: string;
@@ -7,29 +7,20 @@ interface ImageProps {
     width: string;
     alt?: string;
     responsive?: boolean;
-    children: any;
+    padding?: string;
 }
 
 const ImageComponent = (props: ImageProps) => {
     return (
-        props.responsive ?
-            <ImageStyle>
-                <Image
-                    src={props.src}
-                    alt={props.alt}
-                    width={props.width}
-                    height={props.height}                    
-                    layout='responsive'
-                    objectFit='contain'
-                />
-                {props.children}
-            </ImageStyle>
-            : <Image
+        <ImageStyled padding={props.padding}>
+            <Image
                 src={props.src}
                 alt={props.alt}
                 width={props.width}
-                height={props.height}
+                height={props.height}                
             />
+        </ImageStyled>
+
     )
 }
 

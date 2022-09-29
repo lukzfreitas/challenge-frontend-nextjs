@@ -1,24 +1,26 @@
-import { Col2, Row } from "../../../../styles/globals";
+
 import ImageComponent from "../../DataDisplay/Image";
+import { Row } from "../../Grid/Row";
 import Button from "../../Inputs/Button";
 import InputSearch from "../../Inputs/InputSearch";
+import { AppBarStyled } from "./styled";
 
 const AppBar = () => {
     return (
         <Row alignItems="center" justifyContent="space-between" height="115px" padding="32px 64px">
-            <Col2>
+            <AppBarStyled>
                 <Row justifyContent="space-between">
-                    <Col2 padding="0px 20px">
+                    <AppBarStyled padding="0px 20px">
                         <ImageComponent src="/logo.png" width="176px" height="50px" alt="Logo" />
-                    </Col2>
-                    <Col2 padding="0px 20px">
+                    </AppBarStyled>
+                    <AppBarStyled padding="0px 20px">
                         <InputSearch id='search' placeholder='O que deseja encontrar?' iconUrl='/search.png' />
-                    </Col2>
+                    </AppBarStyled>
                 </Row>
-            </Col2>
-            <Col2>
+            </AppBarStyled>
+            <AppBarStyled>
                 <Button label="Login" type="secondary" width="182px"></Button>
-            </Col2>
+            </AppBarStyled>            
         </Row>
     );
 };

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useState } from "react";
 import ImageComponent from "../../DataDisplay/Image";
 import { FormControl, Icon, InputStyle } from "./styled";
