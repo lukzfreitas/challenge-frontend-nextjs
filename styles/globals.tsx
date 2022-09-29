@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 interface PropsRow {
     alignItems?: string;
     justifyContent?: string;
@@ -13,6 +12,7 @@ interface PropsCol {
     justifyContent?: string;
     alignItems?: string;    
     padding?: string;    
+    nCols?: number;
 }
 
 export const Row = styled.div<PropsRow>`
@@ -50,6 +50,30 @@ export const Col3 = styled.div<PropsCol>`
     display: "flex";
     flex-direction: column;
     flex: "1 1 33%";
+    justify-content: ${(p: PropsCol) => p.justifyContent};    
+    padding: ${(p: PropsCol) => p.padding};
+`
+
+export const Col4 = styled.div<PropsCol>`
+    display: "flex";
+    flex-direction: column;
+    flex: "1 1 25%";
+    justify-content: ${(p: PropsCol) => p.justifyContent};    
+    padding: ${(p: PropsCol) => p.padding};
+`
+
+export const Col5 = styled.div<PropsCol>`
+    display: "flex";
+    flex-direction: column;
+    flex: "1 1 20%";
+    justify-content: ${(p: PropsCol) => p.justifyContent};    
+    padding: ${(p: PropsCol) => p.padding};
+`
+
+export const ColN = styled.div<PropsCol>`
+    display: "flex";
+    flex-direction: column;
+    flex: ${(p: PropsCol) => `1 1 ${100 / p.nCols}%`};
     justify-content: ${(p: PropsCol) => p.justifyContent};    
     padding: ${(p: PropsCol) => p.padding};
 `
