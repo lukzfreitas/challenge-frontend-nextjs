@@ -12,8 +12,8 @@ interface CardProps {
 const Card = (props: CardProps) => {
     return (
         <Row>
-            <Column>
-                <ImageComponent src={props.image} height="174px" width="176px"></ImageComponent>
+            <Column padding="0px 8px">
+                <ImageComponent src={props.image} height="290px" width="300px"></ImageComponent>
                 <Label text={props.label1} type="label1" />
                 <Label text={props.label2} type="label2" />
                 <Label text={props.label3} type="label3" />

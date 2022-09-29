@@ -1,17 +1,21 @@
 import styled from "styled-components";
 
+type JustifyContent = "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly" | "initial" | "inherit";
+
+type AlignItems = "stretch" | "center" | "flex-start" | "flex-end" | "baseline" | "initial" | "inherit";
+
 interface PropsRow {
-    alignItems?: string;
-    justifyContent?: string;
+    alignItems?: AlignItems;
+    justifyContent?: JustifyContent;
     height?: string;
     width?: string;
     padding?: string;
 }
 
 interface PropsCol {
-    justifyContent?: string;
-    alignItems?: string;    
-    padding?: string;    
+    justifyContent?: JustifyContent;
+    alignItems?: AlignItems;
+    padding?: string;
     nCols?: number;
 }
 
@@ -25,9 +29,10 @@ export const Row = styled.div<PropsRow>`
     padding: ${(p: PropsRow) => p.padding};
 `
 
-export const Column = styled.div`
+export const Column = styled.div<PropsCol>`
     display: flex;
     flex-direction: column;
+    padding: ${(p: PropsCol) => p.padding};
 `
 
 export const Col1 = styled.div<PropsCol>`
