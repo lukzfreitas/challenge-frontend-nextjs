@@ -5,6 +5,7 @@ interface PropsRow {
     alignItems?: string;
     justifyContent?: string;
     height?: string;
+    width?: string;
     padding?: string;
 }
 
@@ -19,7 +20,8 @@ export const Row = styled.div<PropsRow>`
     flex-wrap: wrap;
     justify-content: ${(p: PropsRow) => p.justifyContent};
     align-items: ${(p: PropsRow) => p.alignItems};
-    height: ${(p: PropsRow) => p.height};    
+    height: ${(p: PropsRow) => p.height};
+    width: ${(p: PropsRow) => p.width};
     padding: ${(p: PropsRow) => p.padding};
 `
 
