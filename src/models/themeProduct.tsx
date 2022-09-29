@@ -2,10 +2,10 @@ import { Product } from "./product";
 
 export class ThemeProduct {
     theme: string;
-    listProducts: Product[];
+    productsList: Product[];
 
-    constructor(theme: string, listProducts: Product[]) {
+    constructor(theme: string, productsList: Product[]) {
         this.theme = theme;
-        this.listProducts = listProducts;
+        this.productsList = productsList;
     }
 }

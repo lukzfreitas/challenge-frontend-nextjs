@@ -4,7 +4,7 @@ interface PropsSearchInput {
     width?: string;
 }
 
-export const InputStyle = styled.input<PropsSearchInput>`    
+export const InputSearchStyled = styled.input<PropsSearchInput>`    
     height: 40px;    
     font-size: 16px; 
     border: transparent;            

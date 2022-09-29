@@ -3,11 +3,11 @@ import { Row } from "../../components/Grid/Row";
 import Link from "../../components/Navigation/Link";
 import { SeeMoreStyled, TitleLineStyle } from "./styled";
 
-interface LineProductsProps {
+interface ProductsLineProps {
     title: string;
 }
 
-const LineProducts = (props: LineProductsProps) => {
+const ProductsLine = (props: ProductsLineProps) => {
     return (
         <Row justifyContent="space-between" alignItems="center" width="100%">
             <TitleLineStyle>
@@ -30,4 +30,4 @@ const SeeMore = (props: { text: string, onClick: Function }) => {
     )
 }
 
-export default LineProducts;
+export default ProductsLine;

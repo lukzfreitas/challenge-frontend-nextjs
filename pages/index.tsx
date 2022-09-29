@@ -4,7 +4,8 @@ import AppBar from '../src/components/Surfaces/AppBar'
 import Banner from '../src/components/Surfaces/Banner'
 import { Product } from '../src/models/product'
 import { ThemeProduct } from '../src/models/themeProduct'
-import ListProducts from '../src/patterns/ListProducts'
+import FooterContact from '../src/patterns/FooterContact'
+import ProductsList from '../src/patterns/ProductsList'
 
 const HomePage: NextPage = () => {
 
@@ -48,7 +49,8 @@ const HomePage: NextPage = () => {
     <Column>
       <AppBar />
       <Banner />
-      <ListProducts listThemeProdutc={listThemeProdutc} />
+      <ProductsList listThemeProdutc={listThemeProdutc} />
+      <FooterContact />
     </Column>
 
   )
