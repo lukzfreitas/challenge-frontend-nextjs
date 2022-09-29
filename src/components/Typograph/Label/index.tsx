@@ -2,8 +2,7 @@ import { LabelStyle } from "./styled";
 
 export interface LabelProps {
     text: string;
-    onClick?: Function;
-    // type: 'label1' | 'label2' | 'label3',
+    onClick?: Function;    
     fontWeight?: number;
     fontSize?: string;
     color?: string
