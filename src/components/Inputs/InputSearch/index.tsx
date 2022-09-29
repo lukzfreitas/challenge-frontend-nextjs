@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ImageComponent from "../../DataDisplay/Image";
-import { FormControl, Icon, InputStyle } from "./styled";
+import { FormControl, Icon, InputSearchStyled } from "./styled";
 
 interface InputSearchProps {
     id: string;
@@ -20,7 +20,7 @@ const InputSearch = ({
 
     return (
         <FormControl>
-            <InputStyle
+            <InputSearchStyled
                 value={text}
                 onChange={e => handleChangeValue(e)}
                 placeholder={props.placeholder}
