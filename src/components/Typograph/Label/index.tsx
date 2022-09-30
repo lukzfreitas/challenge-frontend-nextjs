@@ -5,16 +5,18 @@ export interface LabelProps {
     onClick?: Function;    
     fontWeight?: number;
     fontSize?: string;
-    color?: string
+    color?: string;
+    textAlign: string;
 }
 
-const Label = ({ fontWeight = 500, fontSize = '14px', color = "#464646", ...props }: LabelProps) => {
+const Label = ({ fontWeight = 500, fontSize = '14px', color = "#464646", onClick = () => {}, ...props }: LabelProps) => {
     return (
         <LabelStyle
             fontWeight={fontWeight}
             fontSize={fontSize}
             color={color}
-            onClick={() => props.onClick()}
+            onClick={() => onClick()}
+            textAlign={props.textAlign}
         >
             {props.text}
         </LabelStyle>
