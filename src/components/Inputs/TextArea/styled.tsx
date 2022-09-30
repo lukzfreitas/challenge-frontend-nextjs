@@ -13,10 +13,20 @@ export const TextAreaStyled = styled.textarea<TextAreaProps>`
     line-height: 20px;    
     font-weight: 400;
     border: transparent;       
+    resize: none;
     :focus {
         outline-color: transparent;            
         outline-width: 0;
     }    
+    ::placeholder {        
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        color: #A2A2A2;
+    }
     width: ${(p: TextAreaProps) => p.width};     
 `;
 

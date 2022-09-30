@@ -8,24 +8,24 @@ interface TextAreaProps {
     height?: string;
     type?: string;
     margin?: string;
+    rows?: number;
 }
 
-export const TextArea = ({value = '', width = '100%', height = '82px', ...props} : TextAreaProps) => {
+export const TextArea = ({value = '', width = '100%', rows = 4, ...props} : TextAreaProps) => {
 
     const [text, setText] = useState(value);    
 
     const handleChangeValue = (event: any) => setText(event.target.value);
 
     return (
-        <FormControl margin={props.margin} height={height}>
-            <LabelStyled>
-                {props.label}
-            </LabelStyled> 
+        <FormControl margin={props.margin}>            
             <TextAreaStyled          
                 value={text}
                 onChange={e => handleChangeValue(e)}                
-                width={width}
-                height={height}
+                width={width}                
+                placeholder={props.label}                
+                rows={rows}
+                draggable={false}
             />
         </FormControl>
     )

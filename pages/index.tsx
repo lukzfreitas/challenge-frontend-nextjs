@@ -5,6 +5,7 @@ import Banner from '../src/components/Surfaces/Banner'
 import { Product } from '../src/models/product'
 import { ThemeProduct } from '../src/models/themeProduct'
 import FooterContact from '../src/patterns/FooterContact'
+import FooterDev from '../src/patterns/FooterDev'
 import ProductsList from '../src/patterns/ProductsList'
 
 const HomePage: NextPage = () => {
@@ -51,6 +52,7 @@ const HomePage: NextPage = () => {
       <Banner />
       <ProductsList listThemeProdutc={listThemeProdutc} />
       <FooterContact />
+      <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022'/>
     </Column>
 
   )
