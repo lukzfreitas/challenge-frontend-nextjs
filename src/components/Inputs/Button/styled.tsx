@@ -1,36 +1,51 @@
 import styled from "styled-components";
 
-interface PropsButtonStyle {
+interface ButtonStyledProps {
     type: 'primary' | 'secondary',
     disabled?: boolean,
     width?: string
 }
 
-export const ButtonStyle = styled.div((props: PropsButtonStyle) => ({    
-    display: "flex",    
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "16px",
-    gap: "10px",
-    width: props.width,
-    height: "51px",
-    left: "16px",
-    top: "16px",    
-    cursor: "pointer",
-    border: props.type === "secondary" ? "1px solid #2A7AE4" : "none",    
-    backgroundColor: props.type === "primary" ? "#2A7AE4" : "transparent",
-    ":hover": {
-        "transition": "all 0.2s ease-in-out",
-        "backgroundColor": props.type === "primary" ? "#5595E9" : "#D4E4FA"
+export const ButtonStyled = styled.div<ButtonStyledProps>`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;    
+    left: 16px;
+    top: 16px;    
+    border: ${(p: ButtonStyledProps) => p.type === "secondary" ? "1px solid #2A7AE4" : "none"};
+    background-color: ${(p: ButtonStyledProps) => p.type === "primary" ? "#2A7AE4" : "transparent"};
+    :hover {
+        transition: all 0.2s ease-in-out;
+        background-color: ${(p: ButtonStyledProps) => p.type === "primary" ? "#5595E9" : "#D4E4FA"};
     }
-}));
+    width: ${(p: ButtonStyledProps) => p.width};
+    height: 51px;
+    cursor: pointer;
+    @media (max-width: 768px) {
+        height: 40px;                
+    }    
+`
 
-export const LabelStyle = styled.label((props: PropsButtonStyle) => ({
-    color: props.type === "primary" ? "#FFFFFF" : "#2A7AE4",    
-    fontStyle: "normal",
-    fontWeight: 400,
-    fontSize: "16px",
-    lineHeight: "19px",
-    cursor: "pointer"
-}));
+export const LabelStyled = styled.label<ButtonStyledProps>`
+    color: ${(p: ButtonStyledProps) => p.type === "primary" ? "#FFFFFF" : "#2A7AE4"};
+    font-style: normal;    
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    @media (max-width: 768px) {        
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+    }
+`
+
+
+
+
+
+
+
+
 
