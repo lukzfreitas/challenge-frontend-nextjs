@@ -24,8 +24,7 @@ export const TextArea = ({value = '', width = '100%', rows = 4, ...props} : Text
                 onChange={e => handleChangeValue(e)}                
                 width={width}                
                 placeholder={props.label}                
-                rows={rows}
-                draggable={false}
+                rows={rows}                
             />
         </FormControl>
     )
