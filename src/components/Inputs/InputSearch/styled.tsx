@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
-interface PropsSearchInput {
-    width?: string;
-}
 
-export const InputSearchStyled = styled.input<PropsSearchInput>`    
+export const InputSearchStyled = styled.input`    
     height: 40px;    
     font-size: 16px; 
     border: transparent;            
@@ -12,8 +9,8 @@ export const InputSearchStyled = styled.input<PropsSearchInput>`
     background-color: #F5F5F5;
     padding: 8px 16px;
     color: #A2A2A2;
-    gap: 8px;
-    width: ${(p: PropsSearchInput) => p.width};
+    gap: 8px;    
+    width: 393px;
     :focus {
         outline-color: transparent;            
         outline-width: 0;
@@ -25,6 +22,12 @@ export const InputSearchStyled = styled.input<PropsSearchInput>`
         font-weight: 400;
         font-style: normal;
     }
+    @media (max-width: 1220px) {
+        width: 272px;
+    }
+    @media (max-width: 1100px) {
+        display: none;
+    }
 `;
 
 export const FormControl = styled.div`
@@ -32,7 +35,10 @@ export const FormControl = styled.div`
         flex-direction: row;
         height: 40px;               
         border: 0;
-        border-radius: 20px;        
+        border-radius: 20px;  
+        @media (max-width: 1100px) {
+            display: none;
+        }      
     `;
 
 export const Icon = styled.div`
@@ -44,4 +50,7 @@ export const Icon = styled.div`
         border-bottom-right-radius: 20px;    
         background-color: #F5F5F5;
         cursor: pointer;
+        @media (max-width: 1100px) {
+            display: none;
+        }   
     `;
