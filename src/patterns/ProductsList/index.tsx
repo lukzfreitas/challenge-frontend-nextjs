@@ -4,27 +4,38 @@ import Card from "../../components/Surfaces/Card";
 import { Product } from "../../models/product";
 import { ThemeProduct } from "../../models/themeProduct";
 import ProductsLine from "../ProductsLine";
-import { ListProductsStyled } from "./styled";
+import { ColProductsStyled, ListProductsStyled, RowProductsStyled } from "./styled";
 
 interface PropsProductsList {
-    listThemeProdutc: ThemeProduct[];
+    listThemeProduct: ThemeProduct[];
 }
 
 const ProductsList = (props: PropsProductsList) => {
     return (
         <ListProductsStyled>
-            {props.listThemeProdutc.map(item =>
-                <ColN nCols={1} padding="64px 152px 0px 152px">
+            {props.listThemeProduct.map((item, index) =>
+                <ColN
+                    key={index}
+                    nCols={1}
+                    padding="64px 152px 0px 152px"
+                    paddingTablet="32px 64px"
+                    paddingMobile="16px 32px"
+                >
                     <Row padding="16px 8px">
                         <ProductsLine title={item.theme}></ProductsLine>
                     </Row>
-                    <Row justifyContent="space-between">
-                        {item.productsList.map((product: Product) => (
-                            <ColN nCols={item.productsList.length}>
-                                <Card image={product.image} label1={product.name} label2={product.price} label3="Ver produto" />
-                            </ColN>
-                        ))}
-                    </Row>
+                    <RowProductsStyled>
+                        {item.productsList.map((product: Product, index: number) =>
+                            <ColProductsStyled key={index}>
+                                <Card
+                                    image={product.image}
+                                    label1={product.name}
+                                    label2={product.price}
+                                    label3={'Ver produto'}
+                                />
+                            </ColProductsStyled>
+                        )}
+                    </RowProductsStyled>
                 </ColN>
             )}
         </ListProductsStyled>

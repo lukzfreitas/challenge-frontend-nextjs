@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import { useEffect, useState } from 'react'
 import { Column } from '../src/components/Grid/Column'
 import AppBar from '../src/components/Surfaces/AppBar'
 import Banner from '../src/components/Surfaces/Banner'
@@ -10,7 +11,7 @@ import ProductsList from '../src/patterns/ProductsList'
 
 const HomePage: NextPage = () => {
 
-  const listThemeProdutc: ThemeProduct[] = [
+  const listThemeProduct = [
     new ThemeProduct(
       'Star Wars',
       [
@@ -36,7 +37,7 @@ const HomePage: NextPage = () => {
     new ThemeProduct(
       'Diversos',
       [
-        new Product('Produto XYZ', 'R$ 60,00', '/atari.png'),        
+        new Product('Produto XYZ', 'R$ 60,00', '/atari.png'),
         new Product('Produto XYZ', 'R$ 60,00', '/shirt_snes.png'),
         new Product('Produto XYZ', 'R$ 60,00', '/sonic.png'),
         new Product('Produto XYZ', 'R$ 60,00', '/retro.png'),
@@ -44,15 +45,15 @@ const HomePage: NextPage = () => {
         new Product('Produto XYZ', 'R$ 60,00', '/pikachu.png')
       ]
     )
-  ]
+  ];
 
   return (
     <Column>
       <AppBar />
       <Banner />
-      <ProductsList listThemeProdutc={listThemeProdutc} />
+      <ProductsList listThemeProduct={listThemeProduct} />
       <FooterContact />
-      <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022'/>
+      <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
     </Column>
 
   )

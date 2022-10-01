@@ -9,8 +9,8 @@ interface LinksListFooter {
 const LinksListFooter = (props: LinksListFooter) => {
     return (
         <Column>
-            {props.linksList.map(link =>
-                <Link label={link} fontSize={'16px'} fontWeight={500} color={"#464646"} onClick={() => { }} />
+            {props.linksList.map((link, index) =>
+                <Link key={index} label={link} fontSize={'16px'} fontWeight={500} color={"#464646"} onClick={() => { }} />
             )}
         </Column>
     )
