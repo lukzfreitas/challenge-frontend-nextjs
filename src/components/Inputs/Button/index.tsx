@@ -1,4 +1,4 @@
-import { ButtonStyle, LabelStyle } from './styled';
+import { ButtonStyled, LabelStyled } from './styled';
 
 interface ButtonProps {
 
@@ -15,8 +15,8 @@ interface ButtonProps {
 
 const Button = ({
     disabled = false,
-    type = 'primary',    
-    width = '100%',
+    type = "primary",    
+    width = "130px",    
     label,
     ...props
 }: ButtonProps) => {
@@ -27,16 +27,16 @@ const Button = ({
     }
 
     return (
-        <ButtonStyle
+        <ButtonStyled
             onClick={() => handleClick()}
             disabled={disabled}
             type={type}
             width={width}
         >
-            <LabelStyle type={type}>
+            <LabelStyled type={type}>
                 {label}
-            </LabelStyle>            
-        </ButtonStyle>
+            </LabelStyled>            
+        </ButtonStyled>
     );
 };
 

@@ -6,7 +6,9 @@ interface PropsRow {
     justifyContent?: JustifyContent;
     height?: string;
     width?: string;
-    padding?: string;
+    padding?: string;    
+    paddingTablet?: string;
+    paddingMobile?: string;
 }
 
 export const Row = styled.div<PropsRow>`
@@ -17,4 +19,11 @@ export const Row = styled.div<PropsRow>`
     height: ${(p: PropsRow) => p.height};
     width: ${(p: PropsRow) => p.width};
     padding: ${(p: PropsRow) => p.padding};
+    @media (max-width: 1200px) {
+        padding: ${(p: PropsRow) => p.paddingTablet};
+    }
+    @media (max-width: 700px) {
+        padding: ${(p: PropsRow) => p.paddingMobile};
+    }
+    
 `

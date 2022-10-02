@@ -10,7 +10,7 @@ interface InputProps {
     margin?: string;
 }
 
-export const Input = ({value = '', width = '100%', height = '56px', ...props} : InputProps) => {
+export const Input = ({value = '', height = '56px', ...props} : InputProps) => {
 
     const [text, setText] = useState(value);    
 
@@ -24,8 +24,7 @@ export const Input = ({value = '', width = '100%', height = '56px', ...props} : 
             <InputStyled            
                 value={text}
                 onChange={e => handleChangeValue(e)}                
-                type={props.type}
-                width={width}
+                type={props.type}                
                 height={height}
             />
         </FormControl>

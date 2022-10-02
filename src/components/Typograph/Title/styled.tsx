@@ -7,4 +7,8 @@ export const TitleStyled = styled.label`
     font-size: 52px;
     line-height: 61px;
     color: "#FFFFFF";
+    @media (max-width: 700px) {
+        font-size: 22px;
+        line-height: 26px;
+    }
 `

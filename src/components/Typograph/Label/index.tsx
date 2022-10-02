@@ -6,7 +6,7 @@ export interface LabelProps {
     fontWeight?: number;
     fontSize?: string;
     color?: string;
-    textAlign: string;
+    textAlign?: string;
 }
 
 const Label = ({ fontWeight = 500, fontSize = '14px', color = "#464646", onClick = () => {}, ...props }: LabelProps) => {

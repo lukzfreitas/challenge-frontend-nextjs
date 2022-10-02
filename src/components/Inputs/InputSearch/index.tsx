@@ -6,8 +6,7 @@ interface InputSearchProps {
     id: string;
     value?: string;
     placeholder?: string;
-    iconUrl?: string;
-    width?: string;
+    iconUrl?: string;    
 }
 
 const InputSearch = ({
@@ -24,8 +23,7 @@ const InputSearch = ({
                 value={text}
                 onChange={e => handleChangeValue(e)}
                 placeholder={props.placeholder}
-                type='text'
-                width="393px"
+                type='text'                
             />
             <Icon>
                 <ImageComponent src="/search.png" alt="search" width="17px" height="17px" />
