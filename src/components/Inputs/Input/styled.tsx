@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-interface FormControlProps {
-    width?: string;
+interface FormControlProps { 
     height?: string;
     margin?: string;
 }
@@ -17,7 +16,7 @@ export const InputStyled = styled.input<FormControlProps>`
         outline-color: transparent;            
         outline-width: 0;
     }    
-    width: ${(p: FormControlProps) => p.width};     
+    width: 100%;     
 `;
 
 export const LabelStyled = styled.label`
@@ -38,7 +37,7 @@ export const FormControl = styled.div<FormControlProps>`
         display: flex;
         flex-direction: column;        
         border: 0;
-        width: ${(p: FormControlProps) => p.width}; 
+        width: 100%;     
         height: ${(p: FormControlProps) => p.height}; 
         margin: ${(p: FormControlProps) => p.margin}; 
     `;

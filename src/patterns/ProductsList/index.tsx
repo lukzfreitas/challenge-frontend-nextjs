@@ -24,7 +24,7 @@ const ProductsList = (props: PropsProductsList) => {
                     <Row padding="16px 8px">
                         <ProductsLine title={item.theme}></ProductsLine>
                     </Row>
-                    <RowProductsStyled>
+                    <RowProductsStyled> 
                         {item.productsList.map((product: Product, index: number) =>
                             <ColProductsStyled key={index}>
                                 <Card

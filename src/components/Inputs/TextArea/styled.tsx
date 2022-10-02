@@ -48,7 +48,8 @@ export const FormControl = styled.div<TextAreaProps>`
     display: flex;
     flex-direction: column;        
     border: 0;
-    width: ${(p: TextAreaProps) => p.width}; 
+    /* width: ${(p: TextAreaProps) => p.width};  */
+    width: 100%;
     height: ${(p: TextAreaProps) => p.height}; 
     margin: ${(p: TextAreaProps) => p.margin}; 
 `;

@@ -6,4 +6,9 @@ export const LinksListStyled = styled.div`
     align-items: flex-start;
     padding: 0px;
     gap: 12px;
+    @media (max-width: 700px) {
+        text-align: center;        
+        align-items: center;
+        gap: 6px;
+    }
 `
