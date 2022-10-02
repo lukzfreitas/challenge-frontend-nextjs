@@ -22,7 +22,7 @@ export const ButtonStyled = styled.div<ButtonStyledProps>`
     width: ${(p: ButtonStyledProps) => p.width};
     height: 51px;
     cursor: pointer;
-    @media (max-width: 900px) {
+    @media (max-width: 700px) {
         height: 40px;                
     }    
 `
@@ -34,7 +34,7 @@ export const LabelStyled = styled.label<ButtonStyledProps>`
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    @media (max-width: 900px) {        
+    @media (max-width: 700px) {        
         font-weight: 600;
         font-size: 14px;
         line-height: 16px;

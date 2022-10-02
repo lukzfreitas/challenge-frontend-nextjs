@@ -19,7 +19,7 @@ export const Row = styled.div<PropsRow>`
     height: ${(p: PropsRow) => p.height};
     width: ${(p: PropsRow) => p.width};
     padding: ${(p: PropsRow) => p.padding};
-    @media (max-width: 900px) {
+    @media (max-width: 1200px) {
         padding: ${(p: PropsRow) => p.paddingTablet};
     }
     @media (max-width: 700px) {

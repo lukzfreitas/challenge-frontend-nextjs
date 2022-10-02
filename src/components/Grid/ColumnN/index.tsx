@@ -15,7 +15,7 @@ export const ColN = styled.div<ColNProps>`
     flex: ${(p: ColNProps) => `1 1 ${100 / p.nCols}%`};
     justify-content: ${(p: ColNProps) => p.justifyContent};    
     padding: ${(p: ColNProps) => p.padding};
-    @media (max-width: 900px) {
+    @media (max-width: 1200px) {
         padding: ${(p: ColNProps) => p.paddingTablet};
     }
     @media (max-width: 700px) {

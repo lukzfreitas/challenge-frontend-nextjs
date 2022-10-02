@@ -18,7 +18,7 @@ const ProductsList = (props: PropsProductsList) => {
                     key={index}
                     nCols={1}
                     padding="64px 152px 0px 152px"
-                    paddingTablet="32px 64px"
+                    paddingTablet="32px"
                     paddingMobile="16px 32px"
                 >
                     <Row padding="16px 8px">

@@ -15,7 +15,7 @@ export const ColProductsStyled = styled.div`
     display: "flex";
     flex-direction: column;
     flex: 1 1 16.6%;    
-    @media (max-width: 900px) {
+    @media (max-width: 1200px) {
         &:nth-last-child(-n+2) {            
             display: none;
         }
