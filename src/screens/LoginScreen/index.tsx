@@ -11,18 +11,18 @@ import LoginScreenStyled from "./styled";
 const LoginScreen = () => {
     return (
         <Column>
-            <AppBar/>
+            <AppBar hideButtonLogin={true}/>
             <LoginScreenStyled>
                 <Row padding="8px 0px" justifyContent="center" alignItems="center" width="423px">
                     <Label text="Iniciar Sessão" textAlign="center" fontWeight={700} fontSize={'16px'}></Label>
                 </Row>
-                <Row padding="16px 0px" width="423px" justifyContent="center" alignItems="center">
+                <Row padding="8px 0px" width="423px" justifyContent="center" alignItems="center">
                     <Input value="" height="41px" placeholder="Escreva seu email"></Input>
                 </Row>
-                <Row padding="16px 0px" width="423px" justifyContent="center" alignItems="center">
+                <Row padding="8px 0px" width="423px" justifyContent="center" alignItems="center">
                     <Input value="" height="41px" placeholder="Escreva sua senha"></Input>
                 </Row>
-                <Row padding="16px 0px" width="100%" justifyContent="center" alignItems="center">
+                <Row padding="8px 0px" width="100%" justifyContent="center" alignItems="center">
                     <Button label="Entrar" width="423px"></Button>
                 </Row>
             </LoginScreenStyled>

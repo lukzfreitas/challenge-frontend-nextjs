@@ -14,6 +14,7 @@ export const TextAreaStyled = styled.textarea<TextAreaProps>`
     font-weight: 400;
     border: transparent;       
     resize: none;
+    font-family: 'Raleway', sans-serif;   
     :focus {
         outline-color: transparent;            
         outline-width: 0;
@@ -26,10 +27,12 @@ export const TextAreaStyled = styled.textarea<TextAreaProps>`
         line-height: 20px;
         display: flex;
         align-items: center;
-        color: #A2A2A2;        
+        color: #A2A2A2;    
+        font-family: 'Raleway', sans-serif;   
     }
     padding: 8px;
     width: ${(p: TextAreaProps) => p.width};     
+    height: ${(p: TextAreaProps) => p.height};
 `;
 
 export const LabelStyled = styled.label`
@@ -49,6 +52,7 @@ export const FormControl = styled.div<TextAreaProps>`
     flex-direction: column;        
     border: 0;    
     width: 100%;
+    border-radius: 4px;    
     height: ${(p: TextAreaProps) => p.height}; 
     margin: ${(p: TextAreaProps) => p.margin};
 `;

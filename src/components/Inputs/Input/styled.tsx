@@ -19,6 +19,7 @@ export const InputStyled = styled.input<FormControlProps>`
         border-bottom: 1px solid #A2A2A2;
     }    
     width: 100%;    
+    height: ${(p: FormControlProps) => p.height}; 
 `;
 
 export const LabelStyled = styled.label`
@@ -38,6 +39,7 @@ export const FormControl = styled.div<FormControlProps>`
         flex-direction: column;        
         border: 0;
         width: 100%;     
+        border-radius: 4px;    
         height: ${(p: FormControlProps) => p.height}; 
         margin: ${(p: FormControlProps) => p.margin}; 
     `;
