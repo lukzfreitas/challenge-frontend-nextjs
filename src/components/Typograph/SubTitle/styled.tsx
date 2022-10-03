@@ -6,7 +6,7 @@ export const SubTitleStyled = styled.label`
     font-weight: 700;
     font-size: 22px;
     line-height: 26px;
-    color: "#FFFFFF";
+    color: #FFFFFF;
 
     @media (max-width: 700px) {        
         font-weight: 600;
