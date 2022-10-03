@@ -4,13 +4,14 @@ import { FormControl, InputStyled, LabelStyled } from "./styled"
 interface InputProps {
     value: string;    
     label?: string;    
+    placeholder?: string;
     width?: string;
     height?: string;
     type?: string;
     margin?: string;
 }
 
-export const Input = ({value = '', height = '56px', ...props} : InputProps) => {
+export const Input = ({value = '', height = '56px', placeholder = '', ...props} : InputProps) => {
 
     const [text, setText] = useState(value);    
 
@@ -26,6 +27,7 @@ export const Input = ({value = '', height = '56px', ...props} : InputProps) => {
                 onChange={e => handleChangeValue(e)}                
                 type={props.type}                
                 height={height}
+                placeholder={placeholder}
             />
         </FormControl>
     )

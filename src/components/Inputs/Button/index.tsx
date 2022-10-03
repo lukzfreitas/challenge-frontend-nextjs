@@ -18,12 +18,13 @@ const Button = ({
     type = "primary",    
     width = "130px",    
     label,
+    onClick = () => {},
     ...props
 }: ButtonProps) => {
 
     const handleClick = () => {
         if (disabled) return;
-        props.onClick;
+        onClick();
     }
 
     return (
