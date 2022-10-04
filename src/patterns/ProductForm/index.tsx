@@ -1,5 +1,6 @@
 import { Column } from "../../components/Grid/Column";
 import { Row } from "../../components/Grid/Row";
+import InputFile from "../../components/InputFile";
 import Button from "../../components/Inputs/Button";
 import { Input } from "../../components/Inputs/Input";
 import { TextArea } from "../../components/Inputs/TextArea";
@@ -9,9 +10,9 @@ const ProductForm = () => {
     return (
         <Column>
             <Label text="Adicionar novo produto" fontSize="32px" fontWeight={700} lineHeight="37px" color="#464646" />
-            <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Input value="" label="URL da imagem"/>
-            </Row>
+            <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">                
+                <InputFile label="Procure no seu computador" type="secondary" width="250px"/>
+            </Row>            
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
                 <Input value="" label="Categoria"/>
             </Row>

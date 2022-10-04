@@ -13,10 +13,10 @@ export const InputStyled = styled.input<FormControlProps>`
     font-weight: 400;
     border: transparent;
     padding: 8px;        
+    border-bottom: 1px solid #A2A2A2;
     :focus {
         outline-color: transparent;            
-        outline-width: 0;
-        border-bottom: 1px solid #A2A2A2;
+        outline-width: 0;        
     }    
     width: 100%;    
     height: ${(p: FormControlProps) => p.height}; 

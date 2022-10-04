@@ -15,10 +15,10 @@ export const TextAreaStyled = styled.textarea<TextAreaProps>`
     border: transparent;       
     resize: none;
     font-family: 'Raleway', sans-serif;   
+    border-bottom: 1px solid #A2A2A2;
     :focus {
         outline-color: transparent;            
-        outline-width: 0;
-        border-bottom: 1px solid #A2A2A2;
+        outline-width: 0;        
     }
     ::placeholder {        
         font-style: normal;
