@@ -22,7 +22,7 @@ const Card = (props: CardProps) => {
                 {
                     props.label3 ?
                         <Label text={props.label3} fontWeight={500} fontSize={"14px"} lineHeight={"16px"} /> :
-                        <Link label={props.link} onClick={() => { }} />
+                        <Link label={props.link} onClick={() => {}} />
                 }
 
 

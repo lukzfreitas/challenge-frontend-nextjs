@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { Column } from '../../components/Grid/Column';
 import AppBar from '../../components/Surfaces/AppBar';
 import Banner from '../../components/Surfaces/Banner';
@@ -6,8 +7,6 @@ import { ThemeProduct } from '../../models/themeProduct';
 import FooterContact from '../../patterns/FooterContact';
 import FooterDev from '../../patterns/FooterDev';
 import ProductsList from '../../patterns/ProductsList';
-
-
 
 const HomeScreen = () => {
   const listThemeProduct = [
@@ -46,15 +45,16 @@ const HomeScreen = () => {
     )
   ];
 
+  const router = useRouter();
+
   return (
     <Column>
-      <AppBar />
+      <AppBar buttonLabel='Login' buttonFunction={() => router.push('login')} />
       <Banner />
       <ProductsList listThemeProduct={listThemeProduct}  />
       <FooterContact />
       <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
     </Column>
-
   )
 }
 

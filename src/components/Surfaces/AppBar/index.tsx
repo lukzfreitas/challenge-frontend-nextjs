@@ -1,5 +1,4 @@
 
-import { useRouter } from "next/router";
 import SearchIcon from "../../DataDisplay/Icons/Search";
 import ImageComponent from "../../DataDisplay/Image";
 import { Row } from "../../Grid/Row";
@@ -8,12 +7,11 @@ import InputSearch from "../../Inputs/InputSearch";
 import { AppBarStyled } from "./styled";
 
 interface AppBarProps {
-    hideButtonLogin?: boolean;
+    buttonLabel?: string;
+    buttonFunction?: Function
 }
 
-const AppBar = ({ hideButtonLogin = false, ..._ }: AppBarProps) => {
-
-    const router = useRouter();
+const AppBar = ({ buttonLabel = null, buttonFunction = () => {}, ..._ }: AppBarProps) => {    
 
     return (
         <Row alignItems="center" justifyContent="space-between" height="115px" padding="32px 154px" paddingTablet="32px 16px" paddingMobile="16px 22px">
@@ -27,9 +25,9 @@ const AppBar = ({ hideButtonLogin = false, ..._ }: AppBarProps) => {
                     </AppBarStyled>
                 </Row>
             </AppBarStyled>
-            {hideButtonLogin ? null : <AppBarStyled paddingMobile="0px 0px">
-                <Button label="Login" type="secondary" width="182px" onClick={() => router.push('login')}></Button>
-            </AppBarStyled>}
+            {buttonLabel ? <AppBarStyled paddingMobile="0px 0px">
+                <Button label={buttonLabel} type="secondary" width="182px" onClick={() => buttonFunction()}></Button>
+            </AppBarStyled> : null}
             <SearchIcon />
         </Row>
     );
