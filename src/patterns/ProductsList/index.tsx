@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { ColN } from "../../components/Grid/ColumnN";
 import { Row } from "../../components/Grid/Row";
 import Button from "../../components/Inputs/Button";
@@ -54,6 +55,8 @@ const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
 
 const ProductAllList = (productList: Product[]) => {
 
+    const router = useRouter();
+
     const newProductList: Product[][] = chunkArray(productList);
     return (
         <ListProductsStyled>
@@ -64,7 +67,7 @@ const ProductAllList = (productList: Product[]) => {
                 paddingTablet="32px"
                 paddingMobile="16px 32px">
                 <Label text="Todos os produtos" fontSize="32px" fontWeight={700} lineHeight="38px" color="#464646"></Label>
-                <Button label="Adicionar produto" width="165px"></Button>
+                <Button label="Adicionar produto" width="165px" onClick={() => router.push("product")}></Button>
             </Row>
             {newProductList.map((item, index) =>
                 <ColN
