@@ -11,7 +11,7 @@ import LoginScreenStyled from "./styled";
 const LoginScreen = () => {
     return (
         <Column>
-            <AppBar hideButtonLogin={true}/>
+            <AppBar />
             <LoginScreenStyled>
                 <Row padding="8px 0px" justifyContent="center" alignItems="center" width="423px">
                     <Label text="Iniciar Sessão" textAlign="center" fontWeight={700} fontSize={'16px'}></Label>

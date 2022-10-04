@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import ImageComponent from "../../DataDisplay/Image";
 import { Column } from "../../Grid/Column";
 import { Row } from "../../Grid/Row";
@@ -13,6 +14,9 @@ interface CardProps {
 }
 
 const Card = (props: CardProps) => {
+
+    const router = useRouter();
+
     return (
         <Row>
             <Column padding="0px 8px">
@@ -22,10 +26,8 @@ const Card = (props: CardProps) => {
                 {
                     props.label3 ?
                         <Label text={props.label3} fontWeight={500} fontSize={"14px"} lineHeight={"16px"} /> :
-                        <Link label={props.link} onClick={() => { }} />
+                        <Link label={props.link} onClick={() => router.push('product')} />
                 }
-
-
             </Column>
         </Row>
     )
