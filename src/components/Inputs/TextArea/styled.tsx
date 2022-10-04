@@ -23,8 +23,8 @@ export const TextAreaStyled = styled.textarea<TextAreaProps>`
     ::placeholder {        
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 20px;
+        font-size: 12px;
+        line-height: 16px;
         display: flex;
         align-items: center;
         color: #A2A2A2;    
