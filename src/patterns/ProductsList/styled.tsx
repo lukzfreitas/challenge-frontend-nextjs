@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 
 export const ListProductsStyled = styled.div`
-    margin: 0 0 64px 0;    
+    padding: 0 0 64px 0;    
+    background-color: #E5E5E5;   
 `
 
 export const RowProductsStyled = styled.div`

@@ -7,7 +7,8 @@ import Label from "../../Typograph/Label";
 interface CardProps {
     label1: string;
     label2: string;
-    label3: string;
+    label3?: string;
+    link?: string;
     image: string;
 }
 
@@ -18,7 +19,13 @@ const Card = (props: CardProps) => {
                 <ImageComponent src={props.image} height="290px" width="300px"></ImageComponent>
                 <Label text={props.label1} />
                 <Label text={props.label2} fontWeight={700} fontSize={"16px"} />
-                <Link label={props.label3} onClick={() => { }} />
+                {
+                    props.label3 ?
+                        <Label text={props.label3} fontWeight={500} fontSize={"14px"} lineHeight={"16px"} /> :
+                        <Link label={props.link} onClick={() => { }} />
+                }
+
+
             </Column>
         </Row>
     )
