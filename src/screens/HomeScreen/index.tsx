@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import { Column } from '../../components/Grid/Column';
 import AppBar from '../../components/Surfaces/AppBar';
 import Banner from '../../components/Surfaces/Banner';
@@ -51,7 +50,7 @@ const HomeScreen = () => {
     <Column>
       <AppBar />
       <Banner />
-      <ProductsList listThemeProduct={listThemeProduct} />
+      <ProductsList listThemeProduct={listThemeProduct}  />
       <FooterContact />
       <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
     </Column>
