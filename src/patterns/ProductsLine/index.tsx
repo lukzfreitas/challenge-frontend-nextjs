@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import ArrowIcon from "../../components/DataDisplay/Icons/Arrow";
 import { Row } from "../../components/Grid/Row";
 import Link from "../../components/Navigation/Link";
@@ -8,13 +9,16 @@ interface ProductsLineProps {
 }
 
 const ProductsLine = (props: ProductsLineProps) => {
+
+    const router = useRouter();
+
     return (
         <Row justifyContent="space-between" alignItems="center" width="100%">
             <TitleLineStyle>
                 {props.title}
             </TitleLineStyle>
             <SeeMoreStyled>
-                <SeeMore text="Ver tudo" onClick={() => { }} />
+                <SeeMore text="Ver tudo" onClick={() => router.push('productList')} />
             </SeeMoreStyled>            
         </Row>
     );
