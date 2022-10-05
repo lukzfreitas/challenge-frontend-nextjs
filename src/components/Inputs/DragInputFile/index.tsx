@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { DragFileStyled, DragInputFileStyled, InputFileStyled, LabelStyled } from "./styled";
 
 interface DragInputFileProps {
@@ -8,6 +8,8 @@ interface DragInputFileProps {
 const DragInputFile = ({ label, ...props }: DragInputFileProps) => {
 
   const [dragActive, setDragActive] = useState(false);
+
+  const inputRef = React.useRef(null);
 
   const handleDrag = (e) => {
     e.preventDefault();
@@ -23,6 +25,7 @@ const DragInputFile = ({ label, ...props }: DragInputFileProps) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
+    console.log(e);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       // handleFiles(e.dataTransfer.files);
     }
@@ -31,14 +34,19 @@ const DragInputFile = ({ label, ...props }: DragInputFileProps) => {
   // triggers when file is selected with click
   const handleChange = function (e) {
     e.preventDefault();
+    console.log(e);
     if (e.target.files && e.target.files[0]) {
       // handleFiles(e.target.files);
     }
   };
 
+  const onButtonClick = () => {
+    inputRef.current.click();
+  };
+
   return (
     <DragInputFileStyled onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
-      <InputFileStyled type="file" multiple={true} />
+      <InputFileStyled ref={inputRef} type="file" multiple={true} onChange={handleChange} />
       <LabelStyled dragActive={dragActive}>
         {label}
       </LabelStyled>

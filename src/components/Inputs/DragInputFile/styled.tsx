@@ -25,7 +25,7 @@ export const LabelStyled = styled.label<DragInputFileStyledProps>`
     border-radius: 1rem;
     border-style: dashed;
     border-color: #cbd5e1;
-    background-color: ${(p: DragInputFileStyledProps) => p.dragActive ? "#ffffff" : "#f8fafc"};
+    background-color: ${(p: DragInputFileStyledProps) => p.dragActive ? "#faf4f8" : "#FFFFFF"};
     padding: 8px;
     color: #A2A2A2;
 `

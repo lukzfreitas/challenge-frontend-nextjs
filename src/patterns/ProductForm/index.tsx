@@ -19,7 +19,7 @@ const ProductForm = () => {
                         <DragInputFile label="Arraste para adicionar uma imagem para o produto" />
                     </Column>
                     <Column padding="0px 4px">
-                        <Label text="ou" />
+                        <Label text="Ou" />
                     </Column>
                     <Column padding="0px 4px">
                         <InputFile label="Procure no seu computador" type="secondary" width="250px" />
