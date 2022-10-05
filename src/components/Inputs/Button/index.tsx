@@ -31,10 +31,10 @@ const Button = ({
         <ButtonStyled
             onClick={() => handleClick()}
             disabled={disabled}
-            type={type}
-            width={width}
+            typeStyle={type}            
+            width={width}            
         >
-            <LabelStyled type={type}>
+            <LabelStyled typeStyle={type}>
                 {label}
             </LabelStyled>            
         </ButtonStyled>
