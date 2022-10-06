@@ -15,4 +15,13 @@ export class Product {
         this.image = image;
         this.code = code;
     }
+
+    toJson() {
+        return {
+            name: this.name,
+            price: this.price,
+            image: this.image,
+            code: this.code
+        }
+    }
 }

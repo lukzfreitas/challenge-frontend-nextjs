@@ -18,7 +18,7 @@ const ProductsLine = (props: ProductsLineProps) => {
                 {props.title}
             </TitleLineStyle>
             <SeeMoreStyled>
-                <SeeMore text="Ver tudo" onClick={() => router.push('productList')} />
+                <SeeMore text="Ver tudo" onClick={() => router.push('products/productList')} />
             </SeeMoreStyled>            
         </Row>
     );

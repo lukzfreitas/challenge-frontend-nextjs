@@ -22,6 +22,9 @@ const ProductsList = ({ listThemeProduct = [], productsList = [], ..._ }: PropsP
 }
 
 const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
+
+    const router = useRouter();
+    
     return (
         <ListProductsStyled>
             {listThemeProduct.map((item, index) =>
@@ -43,6 +46,7 @@ const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
                                     label1={product.name}
                                     label2={product.price}
                                     link={'Ver produto'}
+                                    onClick={() => router.push(`/products/${product.code}`)}
                                 />
                             </ColProductsStyled>
                         )}
