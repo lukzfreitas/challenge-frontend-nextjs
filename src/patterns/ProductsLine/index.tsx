@@ -6,20 +6,24 @@ import { SeeMoreStyled, TitleLineStyle } from "./styled";
 
 interface ProductsLineProps {
     title: string;
+    showSeeMore?: boolean;
 }
 
-const ProductsLine = (props: ProductsLineProps) => {
+const ProductsLine = ({ showSeeMore = true, ...props }: ProductsLineProps) => {
 
     const router = useRouter();
 
     return (
-        <Row justifyContent="space-between" alignItems="center" width="100%">
+        <Row justifyContent="space-between" alignItems="center" width="100%" color="#E5E5E5">
             <TitleLineStyle>
                 {props.title}
             </TitleLineStyle>
-            <SeeMoreStyled>
-                <SeeMore text="Ver tudo" onClick={() => router.push('products/productList')} />
-            </SeeMoreStyled>            
+            {showSeeMore ?
+                <SeeMoreStyled>
+                    <SeeMore text="Ver tudo" onClick={() => router.push('products/productList')} />
+                </SeeMoreStyled>
+                : null
+            }
         </Row>
     );
 }

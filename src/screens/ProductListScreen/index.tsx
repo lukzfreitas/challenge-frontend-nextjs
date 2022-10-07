@@ -31,7 +31,7 @@ const ProductListScreen = () => {
     return (
         <Column>
             <AppBar />
-            <ProductsList productsList={productsList} />
+            <ProductsList productsList={productsList} title="Todos os produtos" buttonLabel="Adicionar produto" />
             <FooterContact />
             <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
         </Column>

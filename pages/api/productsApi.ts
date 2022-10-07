@@ -31,6 +31,11 @@ export function getAllProducts() {
   });
 }
 
+export function getProductsSimilar(): Product[] {
+  return products.splice(0, 6);
+}
+
+
 export function getProduct(code: string): Product {  
   const listProducts = products.filter(p => p.code == code);
   if (listProducts.length > 0) {

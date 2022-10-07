@@ -8,9 +8,10 @@ interface PropsRow {
     width?: string;
     widthTablet?: string;
     widthMobile?: string;
-    padding?: string;    
+    padding?: string;
     paddingTablet?: string;
     paddingMobile?: string;
+    color?: string;
 }
 
 export const Row = styled.div<PropsRow>`
@@ -20,7 +21,7 @@ export const Row = styled.div<PropsRow>`
     align-items: ${(p: PropsRow) => p.alignItems};
     height: ${(p: PropsRow) => p.height};
     width: ${(p: PropsRow) => p.width};
-    
+    background-color: ${(p: PropsRow) => p.color};
     padding: ${(p: PropsRow) => p.padding};
     @media (max-width: 1200px) {
         padding: ${(p: PropsRow) => p.paddingTablet};
@@ -30,5 +31,4 @@ export const Row = styled.div<PropsRow>`
         padding: ${(p: PropsRow) => p.paddingMobile};
         width: ${(p: PropsRow) => p.widthMobile};
     }
-    
-`
+    `
