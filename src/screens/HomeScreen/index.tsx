@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Column } from '../../components/Grid/Column';
 import AppBar from '../../components/Surfaces/AppBar';
@@ -48,13 +49,20 @@ const HomeScreen = () => {
   const router = useRouter();
 
   return (
-    <Column>
-      <AppBar buttonLabel='Login' buttonFunction={() => router.push('login/login')} />
-      <Banner />
-      <ProductsList listThemeProduct={listThemeProduct}  />
-      <FooterContact />
-      <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
-    </Column>
+    <>
+      <Head>
+        <title>Home</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Column>
+        <AppBar buttonLabel='Login' buttonFunction={() => router.push('login/login')} />
+        <Banner />
+        <ProductsList listThemeProduct={listThemeProduct} />
+        <FooterContact />
+        <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
+      </Column>
+    </>
+
   )
 }
 

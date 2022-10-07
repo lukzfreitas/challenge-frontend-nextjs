@@ -24,7 +24,6 @@ const ProductDetailsScreen = (product: Product, productListSimilar: Product[]) =
       </Column>
     </>
 
-
   )
 }
 
