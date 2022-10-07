@@ -15,11 +15,18 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 export const getStaticProps: GetStaticProps = ({ params }: any) => {  
   const product = getProduct(params.product);
+  if (product) {
+    return {
+      props: {
+        product: product.toJson(),
+      }
+    }
+  }  
   return {
     props: {
-      product: product.toJson(),
+      product: {},
     }
-  }
+  };
 }
 
 export default ProductDetails;
