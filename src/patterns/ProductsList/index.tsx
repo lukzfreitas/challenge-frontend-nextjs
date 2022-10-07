@@ -12,19 +12,22 @@ import { ColProductsStyled, ListProductsStyled, RowProductsStyled } from "./styl
 interface PropsProductsList {
     listThemeProduct?: ThemeProduct[];
     productsList?: Product[];
+    title?: string;
+    buttonLabel?: string;
+    showSeeProduct?: boolean
 }
 
-const ProductsList = ({ listThemeProduct = [], productsList = [], ..._ }: PropsProductsList) => {
+const ProductsList = ({ showSeeProduct = false, listThemeProduct = [], productsList = [], ...props }: PropsProductsList) => {
     if (listThemeProduct.length > 0) {
         return ProductListByTheme(listThemeProduct)
     }
-    return ProductAllList(productsList);
+    return ProductAllList(productsList, props.title, props.buttonLabel, showSeeProduct);
 }
 
 const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
 
     const router = useRouter();
-    
+
     return (
         <ListProductsStyled>
             {listThemeProduct.map((item, index) =>
@@ -57,7 +60,7 @@ const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
     )
 }
 
-const ProductAllList = (productList: Product[]) => {
+const ProductAllList = (productList: Product[], title: string, buttonLabel: string, showSeeProduct: boolean) => {
 
     const router = useRouter();
 
@@ -70,8 +73,25 @@ const ProductAllList = (productList: Product[]) => {
                 padding="70px 152px 0px 152px"
                 paddingTablet="32px"
                 paddingMobile="16px 32px">
-                <Label text="Todos os produtos" fontSize="32px" fontWeight={700} lineHeight="38px" color="#464646"></Label>
-                <Button label="Adicionar produto" width="165px" onClick={() => router.push("product")}></Button>
+                {
+                    title ?
+                        <Label
+                            text={title}
+                            fontSize="32px"
+                            fontWeight={700}
+                            lineHeight="38px"
+                            color="#464646" />
+                        : null
+                }
+                {
+                    buttonLabel ?
+                        <Button
+                            label="Adicionar produto"
+                            width="165px"
+                            onClick={() => router.push("product")} />
+                        : null
+                }
+
             </Row>
             {newProductList.map((item, index) =>
                 <ColN
@@ -84,12 +104,21 @@ const ProductAllList = (productList: Product[]) => {
                     <RowProductsStyled>
                         {item.map((product: Product, index: number) =>
                             <ColProductsStyled key={index}>
-                                <Card
-                                    image={product.image}
-                                    label1={product.name}
-                                    label2={product.price}
-                                    label3={product.code}
-                                />
+                                {showSeeProduct
+                                    ? <Card
+                                        image={product.image}
+                                        label1={product.name}
+                                        label2={product.price}
+                                        link={'Ver produto'}
+                                        onClick={() => router.push(`/products/${product.code}`)}
+                                    />
+                                    : <Card
+                                        image={product.image}
+                                        label1={product.name}
+                                        label2={product.price}
+                                        label3={product.code}
+                                    />
+                                }
                             </ColProductsStyled>
                         )}
                     </RowProductsStyled>

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-export const ProductDetailStyled = styled.div`
-    padding: 0 0 64px 0;    
+export const ProductDetailStyled = styled.div`    
     background-color: #E5E5E5;   
 `

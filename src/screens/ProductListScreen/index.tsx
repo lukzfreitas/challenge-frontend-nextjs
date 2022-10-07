@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Column } from "../../components/Grid/Column";
 import AppBar from "../../components/Surfaces/AppBar";
 import { Product } from "../../models/product";
@@ -29,12 +30,19 @@ const ProductListScreen = () => {
     ];
 
     return (
-        <Column>
-            <AppBar />
-            <ProductsList productsList={productsList} />
-            <FooterContact />
-            <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
-        </Column>
+        <>
+            <Head>
+                <title>Lista de Produtos</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
+            <Column>
+                <AppBar />
+                <ProductsList productsList={productsList} title="Todos os produtos" buttonLabel="Adicionar produto" />
+                <FooterContact />
+                <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
+            </Column>
+        </>
+
     )
 }
 
