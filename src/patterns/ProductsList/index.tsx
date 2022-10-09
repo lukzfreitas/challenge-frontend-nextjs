@@ -60,7 +60,12 @@ const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
     )
 }
 
-const ProductAllList = (productList: Product[], title: string, buttonLabel: string, showSeeProduct: boolean) => {
+const ProductAllList = (
+    productList: Product[],
+    title: string,
+    buttonLabel: string,
+    showSeeProduct: boolean,
+) => {
 
     const router = useRouter();
 

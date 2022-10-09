@@ -14,7 +14,9 @@ export const getStaticPaths: GetStaticPaths = () => {
 }
 
 export const getStaticProps: GetStaticProps = ({ params }: any) => {  
+  console.log(params.product);
   const product = getProduct(params.product);
+  console.log(product)
   if (product) {
     return {
       props: {
