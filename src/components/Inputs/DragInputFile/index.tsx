@@ -3,9 +3,15 @@ import { DragFileStyled, DragInputFileStyled, InputFileStyled, LabelStyled } fro
 
 interface DragInputFileProps {
   label: string;
+  multipleFile?: boolean;
+  handleFiles?: Function;
 }
 
-const DragInputFile = ({ label, ...props }: DragInputFileProps) => {
+const DragInputFile = ({
+  handleFiles = () => { },
+  multipleFile = false,
+  label, ..._
+}: DragInputFileProps) => {
 
   const [dragActive, setDragActive] = useState(false);
 
@@ -25,28 +31,21 @@ const DragInputFile = ({ label, ...props }: DragInputFileProps) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    console.log(e);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      // handleFiles(e.dataTransfer.files);
+      handleFiles(e.dataTransfer.files);
     }
   };
 
-  // triggers when file is selected with click
   const handleChange = function (e) {
     e.preventDefault();
-    console.log(e);
     if (e.target.files && e.target.files[0]) {
-      // handleFiles(e.target.files);
+      handleFiles(e.target.files);
     }
-  };
-
-  const onButtonClick = () => {
-    inputRef.current.click();
   };
 
   return (
     <DragInputFileStyled onDragEnter={handleDrag} onSubmit={(e) => e.preventDefault()}>
-      <InputFileStyled ref={inputRef} type="file" multiple={true} onChange={handleChange} />
+      <InputFileStyled ref={inputRef} type="file" multiple={multipleFile} onChange={handleChange} />
       <LabelStyled dragActive={dragActive}>
         {label}
       </LabelStyled>

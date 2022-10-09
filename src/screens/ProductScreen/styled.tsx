@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ProductScreenStyled = styled.div`
     background-color: #E5E5E5;    
-    height: 680px;
+    height: 750px;
     display: flex;
     flex-direction: column;    
     padding: 0px 200px;    
