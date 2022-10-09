@@ -1,7 +1,6 @@
 import React from "react";
 import { ButtonInputFileStyled, LabelStyled } from "./styled";
 
-
 interface InputFileProps {
 
     disabled?: boolean;
@@ -12,7 +11,9 @@ interface InputFileProps {
 
     label: string;
 
-    onClick?: () => void;
+    onClick?: Function;
+
+    handleFiles?: Function;
 }
 
 const InputFile = ({
@@ -21,12 +22,20 @@ const InputFile = ({
     width = "130px",
     label,
     onClick = () => { },
-    ...props
+    handleFiles = () => { },
+    ..._
 }: InputFileProps) => {
 
     const hiddenFileInput = React.useRef(null);
 
-    const onButtonClick = () => hiddenFileInput.current.click();     
+    const onButtonClick = () => hiddenFileInput.current.click();
+
+    const handleChange = function (e) {
+        e.preventDefault();
+        if (e.target.files && e.target.files[0]) {
+            handleFiles(e.target.files);
+        }
+    };
 
     return (
         <>
@@ -35,10 +44,12 @@ const InputFile = ({
             </ButtonInputFileStyled>
             <input type="file"
                 ref={hiddenFileInput}
-                style={{ display: 'none' }} />
+                style={{ display: 'none' }}
+                onChange={handleChange}
+            />
         </>
 
-    )    
+    )
 }
 
 
