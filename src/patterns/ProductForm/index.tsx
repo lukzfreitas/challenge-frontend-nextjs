@@ -29,13 +29,18 @@ const ProductForm = () => {
                         <Label text="Ou" />
                     </Column>
                     <Column padding="0px 4px">
-                        <InputFile label="Procure no seu computador" type="secondary" width="250px" />
+                        <InputFile 
+                        label="Procure no seu computador" 
+                        type="secondary" 
+                        width="250px" 
+                        handleFiles={(files: File[]) => setFiles(files)}
+                        />
                     </Column>
                 </ProductFormStyled>
             </Row>
             {files.length > 0
                 ? <Row padding="16px 0px 4px 0px" justifyContent="center" alignItems="center" width="560px" widthTablet="100%" widthMobile="100%">
-                    <Label text={files[0]?.name}></Label>
+                    <Label text={files[0]?.name} color="#5595E9"></Label>
                     <DeleteIcon onClick={() => setFiles([])}></DeleteIcon>
                 </Row>
                 : null
