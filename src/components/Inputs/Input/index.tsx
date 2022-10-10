@@ -8,21 +8,31 @@ interface InputProps {
     width?: string;
     height?: string;
     type?: string;
-    margin?: string;
+    margin?: string;    
+    onChange?: Function;
 }
 
-export const Input = ({ value = '', height = '56px', placeholder = '', ...props }: InputProps) => {
+export const Input = ({
+    onChange = () => { },    
+    value = '',
+    height = '56px',
+    placeholder = '',
+    ...props
+}: InputProps) => {
 
     const [text, setText] = useState(value);
 
-    const handleChangeValue = (event: any) => setText(event.target.value);
+    const handleChangeValue = (event: any) => {        
+        setText(event.target.value);
+        onChange(event.target.value);
+    }
 
     return (
         <FormControl margin={props.margin} height={height}>
-            {props?.label ? 
-            <LabelStyled>
-                {props.label}
-            </LabelStyled> : null}
+            {props?.label ?
+                <LabelStyled>
+                    {props.label}
+                </LabelStyled> : null}
             <InputStyled
                 value={text}
                 onChange={e => handleChangeValue(e)}
