@@ -1,6 +1,7 @@
 import { useState } from "react";
+import SearchIcon from "../../DataDisplay/Icons/Search";
 import ImageComponent from "../../DataDisplay/Image";
-import { FormControl, Icon, InputSearchStyled } from "./styled";
+import { FormControl, IconStyled, InputSearchStyled } from "./styled";
 
 interface InputSearchProps {
     id: string;
@@ -25,9 +26,9 @@ const InputSearch = ({
                 placeholder={props.placeholder}
                 type='text'                
             />
-            <Icon>
-                <ImageComponent src="/search.png" alt="search" width="17px" height="17px" />
-            </Icon>
+            <IconStyled>
+                <SearchIcon/>
+            </IconStyled>
         </FormControl>
     );
 }

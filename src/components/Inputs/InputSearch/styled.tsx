@@ -41,7 +41,7 @@ export const FormControl = styled.div`
         }      
     `;
 
-export const Icon = styled.div`
+export const IconStyled = styled.div`
         display: flex;
         align-items: center;
         justify-content: flex-end;  
