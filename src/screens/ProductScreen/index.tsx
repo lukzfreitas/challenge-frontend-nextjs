@@ -19,7 +19,7 @@ const ProductScreen = () => {
                     <ProductForm />
                 </ProductScreenStyled>
                 <FooterContact />
-                <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
+                <FooterDev />
             </Column>
         </>
 

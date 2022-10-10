@@ -39,7 +39,7 @@ const ProductListScreen = () => {
                 <AppBar />
                 <ProductsList productsList={productsList} title="Todos os produtos" buttonLabel="Adicionar produto" />
                 <FooterContact />
-                <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
+                <FooterDev />
             </Column>
         </>
 
