@@ -4,7 +4,7 @@ import ImageComponent from "../../DataDisplay/Image";
 import { Row } from "../../Grid/Row";
 import Button from "../../Inputs/Button";
 import InputSearch from "../../Inputs/InputSearch";
-import { AppBarStyled } from "./styled";
+import { AppBarStyled, IconStyled } from "./styled";
 
 interface AppBarProps {
     buttonLabel?: string;
@@ -28,7 +28,9 @@ const AppBar = ({ buttonLabel = null, buttonFunction = () => {}, ..._ }: AppBarP
             {buttonLabel ? <AppBarStyled paddingMobile="0px 0px">
                 <Button label={buttonLabel} type="secondary" width="182px" onClick={() => buttonFunction()}></Button>
             </AppBarStyled> : null}
-            <SearchIcon />
+            <IconStyled>
+                <SearchIcon color="#928f8f"/>
+            </IconStyled>            
         </Row>
     );
 };

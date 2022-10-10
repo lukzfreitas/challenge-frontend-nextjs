@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { JustifyContent } from "../../../models/typesStyled";
 
-interface AppBarStyledProps {    
+interface AppBarStyledProps {
     justifyContent?: JustifyContent;
     padding?: string;
     paddingMobile?: string;
@@ -17,4 +17,10 @@ export const AppBarStyled = styled.div<AppBarStyledProps>`
     }
     justify-content: ${(p: AppBarStyledProps) => p.justifyContent};
     padding: ${(p: AppBarStyledProps) => p.padding};
+`
+
+export const IconStyled = styled.div`
+    @media (min-width: 1100px) {
+        display: none;
+    }   
 `
