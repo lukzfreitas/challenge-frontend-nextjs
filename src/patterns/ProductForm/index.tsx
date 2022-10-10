@@ -14,6 +14,34 @@ const ProductForm = () => {
 
     const [files, setFiles]: [File[], Function] = useState([]);
 
+    const [category, setCategory]: [string, Function] = useState('');
+
+    const [name, setName]: [string, Function] = useState('');
+
+    const [price, setPrice]: [string, Function] = useState('');
+
+    const [description, setDescription]: [string, Function] = useState('');
+
+    const handleText = (text: string, field: string) => {
+        switch (field) {
+            case 'category':
+                setCategory(text);
+                break;
+            case 'name':
+                setName(text);
+                break;
+            case 'price':
+                setPrice(text);
+                break;
+            case 'description':
+                setDescription(text);
+        }
+    }
+
+    const isValid = (): boolean =>
+        (name.trim() !== "" && description.trim() !== "" && price.trim() !== "" && description.trim() !== "" && files.length > 0);
+
+
     return (
         <Column>
             <Label text="Adicionar novo produto" fontSize="32px" fontWeight={700} lineHeight="37px" color="#464646" />
@@ -29,11 +57,11 @@ const ProductForm = () => {
                         <Label text="Ou" />
                     </Column>
                     <Column padding="0px 4px">
-                        <InputFile 
-                        label="Procure no seu computador" 
-                        type="secondary" 
-                        width="250px" 
-                        handleFiles={(files: File[]) => setFiles(files)}
+                        <InputFile
+                            label="Procure no seu computador"
+                            type="secondary"
+                            width="250px"
+                            handleFiles={(files: File[]) => setFiles(files)}
                         />
                     </Column>
                 </ProductFormStyled>
@@ -46,19 +74,19 @@ const ProductForm = () => {
                 : null
             }
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Input value="" label="Categoria" />
+                <Input value={category} label="Categoria" onChange={(value: string) => handleText(value, 'category')} />
             </Row>
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Input value="" label="Nome do produto" />
+                <Input value={name} label="Nome do produto" onChange={(value: string) => handleText(value, 'name')} />
             </Row>
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Input value="" label="Preço do produto" />
+                <Input value={price} label="Preço do produto" onChange={(value: string) => handleText(value, 'price')} />
             </Row>
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <TextArea value="" label="Descrição do produto" />
+                <TextArea value={description} label="Descrição do produto" onChange={(value: string) => handleText(value, 'description')} />
             </Row>
             <Row padding="8px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Button label="Adicionar produto" width="100%"></Button>
+                <Button label="Adicionar produto" width="100%" disabled={!isValid()}></Button>
             </Row>
         </Column>
     )
