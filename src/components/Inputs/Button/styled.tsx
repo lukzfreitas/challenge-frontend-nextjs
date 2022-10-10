@@ -14,10 +14,10 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
     left: 16px;
     top: 16px;    
     border: ${(p: ButtonStyledProps) => p.typeStyle === "secondary" ? "1px solid #2A7AE4" : "none"};
-    background-color: ${(p: ButtonStyledProps) => p.typeStyle === "primary" ? "#2A7AE4" : "transparent"};
+    background-color: ${(p: ButtonStyledProps) => p.disabled ? "#a9a9aa" : p.typeStyle === "primary" ? "#2A7AE4" : "transparent"};
     :hover {
-        transition: all 0.2s ease-in-out;
-        background-color: ${(p: ButtonStyledProps) => p.typeStyle === "primary" ? "#5595E9" : "#D4E4FA"};
+        transition: ${(p: ButtonStyledProps) => p.disabled ? 'none' : 'all 0.2s ease-in-out'};
+        background-color: ${(p: ButtonStyledProps) => p.disabled ? '#a9a9aa' : p.typeStyle === "primary" ? "#5595E9" : "#D4E4FA"};
     }
     width: ${(p: ButtonStyledProps) => p.width};
     height: 51px;
