@@ -38,16 +38,16 @@ const FooterContact = () => {
             </ColumnTabletStyled>
 
             <Column2Styled>
-                <Input value="André Lisboa" label={name} margin="0 0 18px 0"></Input>
-                <TextArea value="" label={typeYourMessage} margin="0 0 16px 0"></TextArea>
+                <Input value="André Lisboa" label={name} maxLength={40} margin="0 0 18px 0"></Input>
+                <TextArea value="" label={typeYourMessage} maxLength={200} margin="0 0 16px 0"></TextArea>
                 <Button type="primary" label={sendMessage} onClick={() => { }} width={"165px"} />
             </Column2Styled>
 
             <ColumnMobile>
                 <ImageComponent src="/logo.png" width="176px" height="50px" alt="Logo" />
                 <LinksListFooter linksList={linksList}></LinksListFooter>
-                <Input value="André Lisboa" label={name} margin="0 0 18px 0"></Input>
-                <TextArea value="" label={typeYourMessage} margin="0 0 8px 0"></TextArea>
+                <Input value="André Lisboa" label={name} maxLength={40} margin="0 0 18px 0"></Input>
+                <TextArea value="" label={typeYourMessage} maxLength={200} margin="0 0 8px 0"></TextArea>
                 <Button type="primary" label={sendMessage} onClick={() => { }} width={"165px"} />
             </ColumnMobile>
 

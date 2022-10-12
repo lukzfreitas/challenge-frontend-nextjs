@@ -8,12 +8,13 @@ interface InputProps {
     width?: string;
     height?: string;
     type?: string;
-    margin?: string;    
+    margin?: string;
     onChange?: Function;
+    maxLength?: number;
 }
 
 export const Input = ({
-    onChange = () => { },    
+    onChange = () => { },
     value = '',
     height = '56px',
     placeholder = '',
@@ -22,7 +23,10 @@ export const Input = ({
 
     const [text, setText] = useState(value);
 
-    const handleChangeValue = (event: any) => {        
+    const handleChangeValue = (event: any) => {
+        if (props.maxLength !== null && event.target.value.length >= props.maxLength) {
+            return;
+        }
         setText(event.target.value);
         onChange(event.target.value);
     }

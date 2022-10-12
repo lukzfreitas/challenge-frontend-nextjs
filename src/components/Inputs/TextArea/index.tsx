@@ -9,6 +9,7 @@ interface TextAreaProps {
     type?: string;
     margin?: string;
     rows?: number;
+    maxLength?: number;
     onChange?: Function
 }
 
@@ -17,6 +18,9 @@ export const TextArea = ({value = '', width = '100%', rows = 4, onChange = () =>
     const [text, setText] = useState(value);    
 
     const handleChangeValue = (event: any) => {
+        if (props.maxLength !== null && event.target.value.length >= props.maxLength) {
+            return;
+        }
         setText(event.target.value);
         onChange(event.target.value);
     }
