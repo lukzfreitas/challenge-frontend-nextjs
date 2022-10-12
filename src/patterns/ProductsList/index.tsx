@@ -8,6 +8,7 @@ import { Product } from "../../models/product";
 import { ThemeProduct } from "../../models/themeProduct";
 import ProductsLine from "../ProductsLine";
 import { ColProductsStyled, ListProductsStyled, RowProductsStyled } from "./styled";
+import { useIntl } from "react-intl";
 
 interface PropsProductsList {
     listThemeProduct?: ThemeProduct[];
@@ -27,6 +28,10 @@ const ProductsList = ({ showSeeProduct = false, listThemeProduct = [], productsL
 const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
 
     const router = useRouter();
+
+    const intl = useIntl();
+
+    const seeProduct = intl.formatMessage({ id: "page.home.seeProduct" });
 
     return (
         <ListProductsStyled>
@@ -48,7 +53,7 @@ const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
                                     image={product.image}
                                     label1={product.name}
                                     label2={product.price}
-                                    link={'Ver produto'}
+                                    link={seeProduct}
                                     onClick={() => router.push(`/products/${product.code}`)}
                                 />
                             </ColProductsStyled>
@@ -91,7 +96,7 @@ const ProductAllList = (
                 {
                     buttonLabel ?
                         <Button
-                            label="Adicionar produto"
+                            label={buttonLabel}
                             width="165px"
                             onClick={() => router.push("product")} />
                         : null

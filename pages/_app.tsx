@@ -8,8 +8,7 @@ const messages = { pt, en };
 
 function MyApp({ Component, pageProps }) {
   const { locale } = useRouter();
-  if (locale == 'pt' || locale == 'en') {
-    console.log(locale);
+  if (locale == 'pt' || locale == 'en') {    
     return (
       <IntlProvider locale={locale} messages={messages[locale]}>
         <GlobalStyyled /><Component {...pageProps} />

@@ -5,8 +5,15 @@ import { Product } from "../../models/product";
 import FooterContact from "../../patterns/FooterContact";
 import FooterDev from "../../patterns/FooterDev";
 import ProductsList from "../../patterns/ProductsList";
+import { useIntl } from "react-intl";
 
 const ProductListScreen = () => {
+
+    const intl = useIntl();
+
+    const allProducts = intl.formatMessage({ id: "page.products.allProducts" });
+    const addProduct = intl.formatMessage({ id: "page.products.addProduct" });
+    const producstListLabel = intl.formatMessage({ id: "page.products.productsList" });    
 
     const productsList = [
         new Product('Produto XYZ', 'R$ 60,00', '/mug_stropper.png', '#1111111'),
@@ -32,12 +39,12 @@ const ProductListScreen = () => {
     return (
         <>
             <Head>
-                <title>Lista de Produtos</title>
+                <title>{producstListLabel}</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Column>
                 <AppBar />
-                <ProductsList productsList={productsList} title="Todos os produtos" buttonLabel="Adicionar produto" />
+                <ProductsList productsList={productsList} title={allProducts} buttonLabel={addProduct} />
                 <FooterContact />
                 <FooterDev />
             </Column>

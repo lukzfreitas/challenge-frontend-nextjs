@@ -5,16 +5,23 @@ import FooterContact from "../../patterns/FooterContact";
 import FooterDev from "../../patterns/FooterDev";
 import ProductForm from "../../patterns/ProductForm";
 import ProductScreenStyled from "./styled";
+import { useIntl } from "react-intl";
 
 const ProductScreen = () => {
+
+    const intl = useIntl();
+
+    const menuAdmin = intl.formatMessage({ id: "page.newProduct.menuAdmin" });
+    const registerProduct = intl.formatMessage({ id: "page.newProduct.registerProduct" });
+        
     return (
         <>
             <Head>
-                <title>Cadastrar Produto</title>
+                <title>{registerProduct}</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Column>
-                <AppBar buttonLabel="Menu administrador" />
+                <AppBar buttonLabel={menuAdmin} />
                 <ProductScreenStyled>
                     <ProductForm />
                 </ProductScreenStyled>

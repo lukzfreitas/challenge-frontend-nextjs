@@ -9,8 +9,22 @@ import Label from "../../components/Typograph/Label";
 import ProductFormStyled from "./styled";
 import { useState } from "react";
 import DeleteIcon from "../../components/DataDisplay/Icons/Delete";
+import { useIntl } from "react-intl";
 
 const ProductForm = () => {
+
+    const intl = useIntl();
+
+    const addNewProduct = intl.formatMessage({ id: "page.newProduct.addNewProduct" });
+    const dragImage = intl.formatMessage({ id: "page.newProduct.dragImage" });
+    const findInDesktop = intl.formatMessage({ id: "page.newProduct.findInDesktop" });
+    
+    const categoryLabel = intl.formatMessage({ id: "page.newProduct.category" });
+    const nameLabel = intl.formatMessage({ id: "page.newProduct.name" });
+    const priceLabel = intl.formatMessage({ id: "page.newProduct.price" });
+    const descriptionLabel = intl.formatMessage({ id: "page.newProduct.description" });
+    const or = intl.formatMessage({ id: "page.newProduct.or" });
+    const buttonNewProduct = intl.formatMessage({ id: "page.newProduct.buttonNewProduct" });
 
     const [files, setFiles]: [File[], Function] = useState([]);
 
@@ -44,21 +58,21 @@ const ProductForm = () => {
 
     return (
         <Column>
-            <Label text="Adicionar novo produto" fontSize="32px" fontWeight={700} lineHeight="37px" color="#464646" />
+            <Label text={addNewProduct} fontSize="32px" fontWeight={700} lineHeight="37px" color="#464646" />
             <Row padding="16px 0px 0px 0px" width="560px" widthTablet="100%" widthMobile="100%">
                 <ProductFormStyled>
                     <Column padding="0px 4px">
                         <DragInputFile
-                            label="Arraste para adicionar uma imagem para o produto"
+                            label={dragImage}
                             handleFiles={(files: File[]) => setFiles(files)}
                         />
                     </Column>
                     <Column padding="0px 4px">
-                        <Label text="Ou" />
+                        <Label text={or} />
                     </Column>
                     <Column padding="0px 4px">
                         <InputFile
-                            label="Procure no seu computador"
+                            label={findInDesktop}
                             type="secondary"
                             width="250px"
                             handleFiles={(files: File[]) => setFiles(files)}
@@ -74,19 +88,19 @@ const ProductForm = () => {
                 : null
             }
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Input value={category} label="Categoria" onChange={(value: string) => handleText(value, 'category')} />
+                <Input value={category} label={categoryLabel} onChange={(value: string) => handleText(value, 'category')} />
             </Row>
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Input value={name} label="Nome do produto" onChange={(value: string) => handleText(value, 'name')} />
+                <Input value={name} label={nameLabel} onChange={(value: string) => handleText(value, 'name')} />
             </Row>
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Input value={price} label="Preço do produto" onChange={(value: string) => handleText(value, 'price')} />
+                <Input value={price} label={priceLabel} onChange={(value: string) => handleText(value, 'price')} />
             </Row>
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <TextArea value={description} label="Descrição do produto" onChange={(value: string) => handleText(value, 'description')} />
+                <TextArea value={description} label={descriptionLabel} onChange={(value: string) => handleText(value, 'description')} />
             </Row>
             <Row padding="8px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Button label="Adicionar produto" width="100%" disabled={!isValid()}></Button>
+                <Button label={addNewProduct} width="100%" disabled={!isValid()}></Button>
             </Row>
         </Column>
     )
