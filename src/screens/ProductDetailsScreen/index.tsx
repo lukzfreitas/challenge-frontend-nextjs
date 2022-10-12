@@ -20,7 +20,7 @@ const ProductDetailsScreen = (product: Product, productListSimilar: Product[]) =
         <ProductDetails product={product} />
         <ProductsList productsList={productListSimilar} title={'Produtos similares'} showSeeProduct={true} />
         <FooterContact />
-        <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
+        <FooterDev />
       </Column>
     </>
 

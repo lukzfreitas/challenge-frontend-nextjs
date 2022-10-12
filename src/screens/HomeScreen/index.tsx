@@ -8,6 +8,7 @@ import { ThemeProduct } from '../../models/themeProduct';
 import FooterContact from '../../patterns/FooterContact';
 import FooterDev from '../../patterns/FooterDev';
 import ProductsList from '../../patterns/ProductsList';
+import { useIntl } from "react-intl";
 
 const HomeScreen = () => {
   const listThemeProduct = [
@@ -46,20 +47,25 @@ const HomeScreen = () => {
     )
   ];
 
+  const intl = useIntl();
+
   const router = useRouter();
+
+  const title = intl.formatMessage({id: "page.home.title"});    
+  const login = intl.formatMessage({id: "page.home.buttonLogin"});    
 
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>{title}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Column>
-        <AppBar buttonLabel='Login' buttonFunction={() => router.push('login/login')} />
+        <AppBar buttonLabel={login} buttonFunction={() => router.push('login/login')} />
         <Banner />
         <ProductsList listThemeProduct={listThemeProduct} />
         <FooterContact />
-        <FooterDev devName="Desenvolvido por Lucas Freitas" year='2022' />
+        <FooterDev />
       </Column>
     </>
 

@@ -13,17 +13,15 @@ export const getStaticPaths: GetStaticPaths = () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = ({ params }: any) => {  
-  console.log(params.product);
+export const getStaticProps: GetStaticProps = ({ params }: any) => {
   const product = getProduct(params.product);
-  console.log(product)
   if (product) {
     return {
       props: {
         product: product.toJson(),
       }
     }
-  }  
+  }
   return {
     props: {
       product: {},

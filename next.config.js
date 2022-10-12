@@ -5,8 +5,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true
   },
-  images: {    
-    domains: ['github.com', 'raw.githubusercontent.com'],
+  i18n: {
+    locales: ["en", "pt"],
+    defaultLocale: "pt",
   },
 }
 
