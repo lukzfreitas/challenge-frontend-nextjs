@@ -10,6 +10,7 @@ import ProductFormStyled from "./styled";
 import { useState } from "react";
 import DeleteIcon from "../../components/DataDisplay/Icons/Delete";
 import { useIntl } from "react-intl";
+import { FormField } from "../../models/formField";
 
 const ProductForm = () => {
 
@@ -18,42 +19,47 @@ const ProductForm = () => {
     const addNewProduct = intl.formatMessage({ id: "page.newProduct.addNewProduct" });
     const dragImage = intl.formatMessage({ id: "page.newProduct.dragImage" });
     const findInDesktop = intl.formatMessage({ id: "page.newProduct.findInDesktop" });
-    
+
     const categoryLabel = intl.formatMessage({ id: "page.newProduct.category" });
     const nameLabel = intl.formatMessage({ id: "page.newProduct.name" });
     const priceLabel = intl.formatMessage({ id: "page.newProduct.price" });
     const descriptionLabel = intl.formatMessage({ id: "page.newProduct.description" });
     const or = intl.formatMessage({ id: "page.newProduct.or" });
-    const buttonNewProduct = intl.formatMessage({ id: "page.newProduct.buttonNewProduct" });
 
     const [files, setFiles]: [File[], Function] = useState([]);
 
-    const [category, setCategory]: [string, Function] = useState('');
+    const [category, setCategory]: [FormField, Function] = useState({ value: '', valid: true });
 
-    const [name, setName]: [string, Function] = useState('');
+    const [name, setName]: [FormField, Function] = useState({ value: '', valid: true });
 
-    const [price, setPrice]: [string, Function] = useState('');
+    const [price, setPrice]: [FormField, Function] = useState({ value: '', valid: true });
 
-    const [description, setDescription]: [string, Function] = useState('');
+    const [description, setDescription]: [FormField, Function] = useState({ value: '', valid: true });
 
     const handleText = (text: string, field: string) => {
         switch (field) {
             case 'category':
-                setCategory(text);
+                setCategory({ value: text, valid: true });
                 break;
             case 'name':
-                setName(text);
+                setName({ value: text, valid: true });
                 break;
             case 'price':
-                setPrice(text);
+                setPrice({ value: text, valid: true });
                 break;
             case 'description':
-                setDescription(text);
+                setDescription({ value: text, valid: true });
         }
     }
 
     const isValid = (): boolean =>
-        (name.trim() !== "" && description.trim() !== "" && price.trim() !== "" && description.trim() !== "" && files.length > 0);
+    (
+        name.value.trim() !== "" &&
+        description.value.trim() !== "" &&
+        price.value.trim() !== "" &&
+        description.value.trim() !== "" &&
+        files.length > 0
+    );
 
 
     return (
@@ -88,16 +94,40 @@ const ProductForm = () => {
                 : null
             }
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Input value={category} label={categoryLabel} onChange={(value: string) => handleText(value, 'category')} />
+                <Input
+                    value={category.value}
+                    label={categoryLabel}
+                    invalid={!category.valid}
+                    invalidMessage={'Categoria do produto não informada'}
+                    onChange={(value: string) => handleText(value, 'category')}
+                />
             </Row>
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Input value={name} label={nameLabel} onChange={(value: string) => handleText(value, 'name')} />
+                <Input
+                    value={name.value}
+                    label={nameLabel}
+                    invalid={!name.valid}
+                    invalidMessage={'Nome do produto não informado'}
+                    onChange={(value: string) => handleText(value, 'name')}
+                />
             </Row>
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Input value={price} label={priceLabel} onChange={(value: string) => handleText(value, 'price')} />
+                <Input
+                    value={price.value}
+                    label={priceLabel}
+                    invalid={!price.valid}
+                    invalidMessage={'Preço do produto não informado'}
+                    onChange={(value: string) => handleText(value, 'price')}
+                />
             </Row>
             <Row padding="16px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <TextArea value={description} label={descriptionLabel} onChange={(value: string) => handleText(value, 'description')} />
+                <TextArea
+                    value={description.value}
+                    label={descriptionLabel}
+                    invalid={!description.valid}
+                    invalidMessage={'Descrição do produto não informado'}
+                    onChange={(value: string) => handleText(value, 'description')}
+                />
             </Row>
             <Row padding="8px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
                 <Button label={addNewProduct} width="100%" disabled={!isValid()}></Button>
