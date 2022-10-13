@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-interface FormControlProps { 
+interface FormControlProps {
     height?: string;
     margin?: string;
+    invalid?: boolean;
 }
 
 export const InputStyled = styled.input<FormControlProps>`    
@@ -11,9 +12,9 @@ export const InputStyled = styled.input<FormControlProps>`
     font-size: 16px; 
     line-height: 20px;    
     font-weight: 400;
-    border: transparent;
+    border: transparent;        
     padding: 8px;        
-    border-bottom: 1px solid #A2A2A2;
+    border-bottom: ${(p: FormControlProps) => p.invalid ? '1px solid rgb(187, 57, 57)' : '1px solid #A2A2A2'};
     :focus {
         outline-color: transparent;            
         outline-width: 0;        
@@ -29,7 +30,7 @@ export const LabelStyled = styled.label`
     line-height: 16px;    
     display: flex;
     align-items: center;
-    color: #A2A2A2; 
+    color: #A2A2A2;
     padding: 8px;
 `
 
@@ -39,7 +40,28 @@ export const FormControl = styled.div<FormControlProps>`
         flex-direction: column;        
         border: 0;
         width: 100%;     
-        border-radius: 4px;    
+        border-radius: 4px;
         height: ${(p: FormControlProps) => p.height}; 
         margin: ${(p: FormControlProps) => p.margin}; 
     `;
+
+export const MessageErrorStyle = styled.div`
+    padding: 2px;
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    animation: slow 2s;
+    animation-fill-mode: forwards;
+    color: rgb(187, 57, 57);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;    
+    @keyframes slow {
+    from {
+        max-height: 0px;
+    }
+    to {
+        max-height: 20px;
+    }
+}
+`
