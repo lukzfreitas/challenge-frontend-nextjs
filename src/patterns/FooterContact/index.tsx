@@ -36,7 +36,7 @@ const FooterContact = () => {
 
     const formIsValid = () => {
         if (name.trim() == '') setNameIsValid(false);
-        if (name.trim() == '') setMessageIsValid(false);
+        if (message.trim() == '') setMessageIsValid(false);
     }
 
     return (
