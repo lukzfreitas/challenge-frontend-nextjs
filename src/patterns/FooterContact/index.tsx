@@ -63,7 +63,14 @@ const FooterContact = () => {
                     invalidMessage={'Campo nome deve ser preenchido'}
                     margin="0 0 18px 0"
                 />
-                <TextArea value={message} label={typeYourMessage} onChange={(value: string) => setMessage(value)} margin="8px 0 16px 0"></TextArea>
+                <TextArea
+                    value={message}
+                    label={typeYourMessage}
+                    onChange={(value: string) => setMessage(value)}
+                    invalid={!messageIsValid}
+                    invalidMessage={'Campo de envio de mensagem deve ser preenchido'}
+                    margin="0 0 8px 0"
+                />
                 <Button type="primary" label={sendMessage} onClick={() => formIsValid()} width={"165px"} />
             </Column2Styled>
 
@@ -78,7 +85,14 @@ const FooterContact = () => {
                     invalidMessage={'Campo nome deve ser preenchido'}
                     margin="0 0 18px 0"
                 />
-                <TextArea value={message} label={typeYourMessage} onChange={(value: string) => setMessage(value)} margin="8px 0 8px 0"></TextArea>
+                <TextArea
+                    value={message}
+                    label={typeYourMessage}
+                    onChange={(value: string) => setMessage(value)}
+                    invalid={!messageIsValid}
+                    invalidMessage={'Campo de envio de mensagem deve ser preenchido'}
+                    margin="0 0 8px 0"
+                />                
                 <Button type="primary" label={sendMessage} onClick={() => formIsValid()} width={"165px"} />
             </ColumnMobile>
 
