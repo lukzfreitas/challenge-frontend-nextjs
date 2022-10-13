@@ -13,7 +13,7 @@ import { validateEmail } from "../../utils/validate";
 import LoginScreenStyled from "./styled";
 import { useIntl } from "react-intl";
 
-const LoginScreen = () => {    
+const LoginScreen = () => {
 
     const intl = useIntl();
 
@@ -21,7 +21,7 @@ const LoginScreen = () => {
     const typeYourEmail = intl.formatMessage({ id: "page.login.typeYourEmail" });
     const typeYourPassword = intl.formatMessage({ id: "page.login.typeYourPassword" });
     const login = intl.formatMessage({ id: "page.home.buttonLogin" });
-    
+
 
     const [email, setEmail] = useState('');
 
@@ -31,6 +31,8 @@ const LoginScreen = () => {
 
     const [validPassword, setValidPassword] = useState(false);
 
+    const [validForm, setValidForm] = useState(true);
+
     const emailIsValid = (text: string) => {
         setValidEmail(validateEmail(text));
         if (validEmail) setEmail(text);
@@ -39,6 +41,10 @@ const LoginScreen = () => {
     const passwordIsValid = (text: string) => {
         setValidPassword(text.length > 4);
         if (validPassword) setPassword(text);
+    }
+
+    const formIsValid = () => {
+        setValidForm(false);
     }
 
     return (
@@ -57,15 +63,21 @@ const LoginScreen = () => {
                         <Input
                             onChange={(value: string) => emailIsValid(value)}
                             type="email"
-                            value={email}                            
-                            placeholder={typeYourEmail} />
+                            value={email}
+                            placeholder={typeYourEmail}
+                            invalid={!validForm}
+                            invalidMessage={'Email não cadastrado ou incorreto'}
+                        />
                     </Row>
                     <Row padding="8px 0px" width="423px" justifyContent="center" alignItems="center">
                         <Input
                             onChange={(value: string) => passwordIsValid(value)}
                             type="password"
-                            value={password}                            
-                            placeholder={typeYourPassword} />
+                            value={password}
+                            placeholder={typeYourPassword}
+                            invalid={!validForm}
+                            invalidMessage={'Senaha não cadastrada ou incorreta'}
+                        />
                     </Row>
                     <Row padding="8px 0px" width="100%" justifyContent="center" alignItems="center">
                         <Button label={login} width="423px" disabled={!validEmail || !validPassword}></Button>
