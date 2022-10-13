@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { Column } from "../../components/Grid/Column";
 import { Row } from "../../components/Grid/Row";
@@ -80,7 +79,7 @@ const LoginScreen = () => {
                         />
                     </Row>
                     <Row padding="8px 0px" width="100%" justifyContent="center" alignItems="center">
-                        <Button label={login} width="423px" disabled={!validEmail || !validPassword}></Button>
+                        <Button label={login} width="423px" disabled={!validEmail || !validPassword} onClick={() => formIsValid()}></Button>
                     </Row>
                 </LoginScreenStyled>
                 <FooterContact />

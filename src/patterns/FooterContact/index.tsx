@@ -5,6 +5,7 @@ import { TextArea } from "../../components/Inputs/TextArea"
 import LinksListFooter from "../LinksListFooter"
 import { ColumnDesktopStyled, ColumnTabletStyled, Column2Styled, FooterContactStyled, ColumnMobile } from "./styled"
 import { useIntl } from "react-intl";
+import { useState } from "react"
 
 const FooterContact = () => {
 
@@ -19,15 +20,31 @@ const FooterContact = () => {
         intl.formatMessage({ id: "page.home.advertiseHere" })
     ]
 
-    const name = intl.formatMessage({ id: "page.home.name" })
+    const nameLabel = intl.formatMessage({ id: "page.home.name" })
     const typeYourMessage = intl.formatMessage({ id: "page.home.typeYourMessage" });
     const sendMessage = intl.formatMessage({ id: "page.home.sendMessage" });
+
+    const [validForm, setValidForm] = useState(true);
+
+    const [name, setName] = useState("André Lisboa");
+
+    const [message, setMessage] = useState("");
+
+    const [nameIsValid, setNameIsValid] = useState(true);
+
+    const [messageIsValid, setMessageIsValid] = useState(true);
+
+    const formIsValid = () => {
+        if (name.trim() == '') setNameIsValid(false);
+        if (name.trim() == '') setMessageIsValid(false);
+    }
 
     return (
         <FooterContactStyled>
             <ColumnDesktopStyled>
                 <ImageComponent src="/logo.png" width="176px" height="50px" alt="Logo" />
             </ColumnDesktopStyled>
+
             <ColumnDesktopStyled>
                 <LinksListFooter linksList={linksList}></LinksListFooter>
             </ColumnDesktopStyled>
@@ -38,17 +55,31 @@ const FooterContact = () => {
             </ColumnTabletStyled>
 
             <Column2Styled>
-                <Input value="André Lisboa" label={name} margin="0 0 18px 0"></Input>
-                <TextArea value="" label={typeYourMessage} margin="0 0 16px 0"></TextArea>
-                <Button type="primary" label={sendMessage} onClick={() => { }} width={"165px"} />
+                <Input
+                    value={name}
+                    label={nameLabel}
+                    onChange={(value: string) => setName(value)}
+                    invalid={!nameIsValid}
+                    invalidMessage={'Campo nome deve ser preenchido'}
+                    margin="0 0 18px 0"
+                />
+                <TextArea value={message} label={typeYourMessage} onChange={(value: string) => setMessage(value)} margin="8px 0 16px 0"></TextArea>
+                <Button type="primary" label={sendMessage} onClick={() => formIsValid()} width={"165px"} />
             </Column2Styled>
 
             <ColumnMobile>
                 <ImageComponent src="/logo.png" width="176px" height="50px" alt="Logo" />
                 <LinksListFooter linksList={linksList}></LinksListFooter>
-                <Input value="André Lisboa" label={name} margin="0 0 18px 0"></Input>
-                <TextArea value="" label={typeYourMessage} margin="0 0 8px 0"></TextArea>
-                <Button type="primary" label={sendMessage} onClick={() => { }} width={"165px"} />
+                <Input
+                    value={name}
+                    label={nameLabel}
+                    onChange={(value: string) => setName(value)}
+                    invalid={!nameIsValid}
+                    invalidMessage={'Campo nome deve ser preenchido'}
+                    margin="0 0 18px 0"
+                />
+                <TextArea value={message} label={typeYourMessage} onChange={(value: string) => setMessage(value)} margin="8px 0 8px 0"></TextArea>
+                <Button type="primary" label={sendMessage} onClick={() => formIsValid()} width={"165px"} />
             </ColumnMobile>
 
         </FooterContactStyled>
