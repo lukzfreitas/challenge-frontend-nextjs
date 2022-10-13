@@ -4,6 +4,7 @@ interface TextAreaProps {
     width?: string;
     height?: string;
     margin?: string;
+    invalid?: boolean;
 }
 
 export const TextAreaStyled = styled.textarea<TextAreaProps>`    
@@ -14,8 +15,8 @@ export const TextAreaStyled = styled.textarea<TextAreaProps>`
     font-weight: 400;
     border: transparent;       
     resize: none;
-    font-family: 'Raleway', sans-serif;   
-    border-bottom: 1px solid #A2A2A2;
+    font-family: 'Raleway', sans-serif;       
+    border-bottom: ${(p: TextAreaProps) => p.invalid ? '1px solid rgb(187, 57, 57)' : '1px solid #A2A2A2'};
     :focus {
         outline-color: transparent;            
         outline-width: 0;        

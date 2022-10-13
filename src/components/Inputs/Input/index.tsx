@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Label from "../../Typograph/Label";
-import { FormControl, InputStyled, LabelStyled, MessageErrorStyle } from "./styled"
+import { MessageError } from "../../Typograph/MessageError";
+import { FormControl, InputStyled, LabelStyled } from "./styled"
 
 interface InputProps {
     value: string;
@@ -48,7 +49,7 @@ export const Input = ({
                     invalid={invalid}
                 />
             </FormControl>
-            {invalid ? <MessageErrorStyle>{invalidMessage}</MessageErrorStyle> : null}
+            {invalid ? <MessageError message={invalidMessage} /> : null}
         </>
     )
 }
