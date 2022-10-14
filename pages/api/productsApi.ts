@@ -21,6 +21,11 @@ const products = [
   new Product('Produto XYZ', 'R$ 60,00', '/pikachu.png', '111128')
 ];
 
+export async function getProductsToExternal() {  
+  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_SERVER}product`);
+  return response.json();    
+}
+
 export function getAllProducts() {  
   return products.map((p: Product) => {
     return {
