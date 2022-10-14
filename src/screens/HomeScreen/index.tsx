@@ -9,8 +9,24 @@ import FooterContact from '../../patterns/FooterContact';
 import FooterDev from '../../patterns/FooterDev';
 import ProductsList from '../../patterns/ProductsList';
 import { useIntl } from "react-intl";
+import { useEffect, useState } from 'react';
+import { getProductsToExternal } from '../../../pages/api/productsApi';
 
 const HomeScreen = () => {
+
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    getProductsToExternal().then((result) => {
+      setData(result)
+      setLoading(false)
+      console.log(data);
+    })
+  }, []);
+
+
   const listThemeProduct = [
     new ThemeProduct(
       'Star Wars',
@@ -57,7 +73,7 @@ const HomeScreen = () => {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{`${title} ${data.length}`}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Column>
