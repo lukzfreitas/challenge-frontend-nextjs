@@ -10,7 +10,7 @@ import FooterDev from '../../patterns/FooterDev';
 import ProductsList from '../../patterns/ProductsList';
 import { useIntl } from "react-intl";
 import { useEffect, useState } from 'react';
-import { getProductsToExternal } from '../../../pages/api/productsApi';
+import { getAllProductsToExternal } from '../../../pages/api/productsApi';
 import Label from '../../components/Typograph/Label';
 
 const HomeScreen = () => {
@@ -20,7 +20,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     setLoading(true);
-    getProductsToExternal().then((data) => {
+    getAllProductsToExternal().then((data) => {
       setData(data);      
       setLoading(false);
     })
@@ -45,7 +45,7 @@ const HomeScreen = () => {
       <Column>
         <AppBar buttonLabel={login} buttonFunction={() => router.push('login/login')} />
         <Banner />
-        {data.length > 0 ? <ProductsList categoryProducts={data} /> : <Label text='Loading...' />}        
+        {!isLoading ? <ProductsList categoryProducts={data} /> : <Label text='Loading...' />}        
         <FooterContact />
         <FooterDev />
       </Column>

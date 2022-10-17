@@ -1,11 +1,13 @@
 import Head from "next/head";
 import { Column } from "../../components/Grid/Column";
 import AppBar from "../../components/Surfaces/AppBar";
-import { Product } from "../../models/product";
 import FooterContact from "../../patterns/FooterContact";
 import FooterDev from "../../patterns/FooterDev";
 import ProductsList from "../../patterns/ProductsList";
 import { useIntl } from "react-intl";
+import { useEffect, useState } from "react";
+import { getProductsByCategoryToExternal } from "../../../pages/api/productsApi";
+import { CategoryProducts } from "../../models/categoryProducts";
 
 const ProductListScreen = () => {
 
@@ -13,44 +15,36 @@ const ProductListScreen = () => {
 
     const allProducts = intl.formatMessage({ id: "page.products.allProducts" });
     const addProduct = intl.formatMessage({ id: "page.products.addProduct" });
-    const producstListLabel = intl.formatMessage({ id: "page.products.productsList" });    
+    const producstListLabel = intl.formatMessage({ id: "page.products.productsList" });
 
-    const productsList = [
-        new Product('Produto XYZ', 'R$ 60,00', '/mug_stropper.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/lego_darth.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/master_yoda.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/stormtropper.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/the_child.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/kylo_ren.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/xbox_control.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/ps5.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/nintendo.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/switch_control.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/xbox.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/game_boy.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/atari.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/shirt_snes.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/sonic.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/retro.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/ar.png', '#1111111'),
-        new Product('Produto XYZ', 'R$ 60,00', '/pikachu.png', '#1111111')
-    ];
+    const [data, setData]: [CategoryProducts, Function] = useState(null);
+    const [isLoading, setLoading] = useState(false);
 
-    return (
-        <>
-            <Head>
-                <title>{producstListLabel}</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
-            <Column>
-                <AppBar />
-                <ProductsList productsList={productsList} title={allProducts} buttonLabel={addProduct} />
-                <FooterContact />
-                <FooterDev />
-            </Column>
-        </>
+    useEffect(() => {
+        setLoading(true);
+        getProductsByCategoryToExternal().then((data: CategoryProducts) => {
+            setData(data);
+            console.log(data);
+            setLoading(false);
+        })
+    }, []);
 
-    )
+    return isLoading ? null :
+        (
+            <>
+                <Head>
+                    <title>{data.name}</title>
+                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                </Head>
+                <Column>
+                    <AppBar />
+                    <ProductsList productsList={data.products} title={allProducts} buttonLabel={addProduct} />
+                    <FooterContact />
+                    <FooterDev />
+                </Column>
+            </>
+
+        )
 }
 
 export default ProductListScreen;
