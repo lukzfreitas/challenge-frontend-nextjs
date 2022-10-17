@@ -36,17 +36,6 @@ export const TextAreaStyled = styled.textarea<TextAreaProps>`
     height: ${(p: TextAreaProps) => p.height};
 `;
 
-export const LabelStyled = styled.label`
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;    
-    display: flex;
-    align-items: center;
-    color: #A2A2A2;  
-    padding: 8px;   
-`
-
 export const FormControl = styled.div<TextAreaProps>`
     background: #FFFFFF;
     display: flex;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MessageError } from "../../Typograph/MessageError";
-import { FormControl, LabelStyled, TextAreaStyled } from "./styled"
+import { FormControl, TextAreaStyled } from "./styled"
 
 interface TextAreaProps {
     value: string;

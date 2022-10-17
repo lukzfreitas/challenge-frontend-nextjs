@@ -11,6 +11,7 @@ import ProductsList from '../../patterns/ProductsList';
 import { useIntl } from "react-intl";
 import { useEffect, useState } from 'react';
 import { getProductsToExternal } from '../../../pages/api/productsApi';
+import Label from '../../components/Typograph/Label';
 
 const HomeScreen = () => {
 
@@ -19,10 +20,10 @@ const HomeScreen = () => {
 
   useEffect(() => {
     setLoading(true);
-    getProductsToExternal().then((result) => {
-      setData(result);
+    getProductsToExternal().then((data) => {
+      setData(data);      
       console.log(data);
-      setLoading(false);      
+      setLoading(false);
     })
   }, []);
 
@@ -45,7 +46,8 @@ const HomeScreen = () => {
       <Column>
         <AppBar buttonLabel={login} buttonFunction={() => router.push('login/login')} />
         <Banner />
-        <ProductsList listThemeProduct={[]} />
+        {data.length > 0 ? <ProductsList categoryProducts={data} /> : <Label text='Loading...' />}
+        
         <FooterContact />
         <FooterDev />
       </Column>

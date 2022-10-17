@@ -1,3 +1,4 @@
+import { CategoryProducts } from "../../src/models/categoryProducts";
 import { Product } from "../../src/models/product";
 
 const products = [
@@ -6,9 +7,10 @@ const products = [
 
 export async function getProductsToExternal() {  
   const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_SERVER}category/products`);
-  const data: any = response.json();    
-  return data;
-  // return data.map(item => CategoryProducts(item));
+  const data: any[] = await response.json();    
+  console.log(data);
+  return data.map(item => new CategoryProducts(item));  
+  
 }
 
 export function getAllProducts() {  

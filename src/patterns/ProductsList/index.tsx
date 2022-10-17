@@ -5,27 +5,27 @@ import Button from "../../components/Inputs/Button";
 import Card from "../../components/Surfaces/Card";
 import Label from "../../components/Typograph/Label";
 import { Product } from "../../models/product";
-import { ThemeProduct } from "../../models/themeProduct";
 import ProductsLine from "../ProductsLine";
 import { ColProductsStyled, ListProductsStyled, RowProductsStyled } from "./styled";
 import { useIntl } from "react-intl";
+import { CategoryProducts } from "../../models/categoryProducts";
 
 interface PropsProductsList {
-    listThemeProduct?: ThemeProduct[];
+    categoryProducts?: CategoryProducts[];
     productsList?: Product[];
     title?: string;
     buttonLabel?: string;
     showSeeProduct?: boolean
 }
 
-const ProductsList = ({ showSeeProduct = false, listThemeProduct = [], productsList = [], ...props }: PropsProductsList) => {
-    if (listThemeProduct.length > 0) {
-        return ProductListByTheme(listThemeProduct)
+const ProductsList = ({ showSeeProduct = false, categoryProducts = [], productsList = [], ...props }: PropsProductsList) => {
+    if (categoryProducts.length > 0) {
+        return ProductListByTheme(categoryProducts)
     }
     return ProductAllList(productsList, props.title, props.buttonLabel, showSeeProduct);
 }
 
-const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
+const ProductListByTheme = (categoryProducts: CategoryProducts[]) => {
 
     const router = useRouter();
 
@@ -35,7 +35,7 @@ const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
 
     return (
         <ListProductsStyled>
-            {listThemeProduct.map((item, index) =>
+            {categoryProducts.map((item, index) =>
                 <ColN
                     key={index}
                     nCols={1}
@@ -44,15 +44,15 @@ const ProductListByTheme = (listThemeProduct: ThemeProduct[]) => {
                     paddingMobile="16px 32px"
                 >
                     <Row padding="16px 8px">
-                        <ProductsLine title={item.theme}></ProductsLine>
+                        <ProductsLine title={item.name}></ProductsLine>
                     </Row>
                     <RowProductsStyled>
-                        {item.productsList.map((product: Product, index: number) =>
+                        {item.products.map((product: Product, index: number) =>
                             <ColProductsStyled key={index}>
                                 <Card
                                     image={product.image}
                                     label1={product.name}
-                                    label2={product.price}
+                                    label2={product.price.toString()}
                                     link={seeProduct}
                                     onClick={() => router.push(`/products/${product.code}`)}
                                 />
@@ -118,14 +118,14 @@ const ProductAllList = (
                                     ? <Card
                                         image={product.image}
                                         label1={product.name}
-                                        label2={product.price}
+                                        label2={product.price.toString()}
                                         link={'Ver produto'}
                                         onClick={() => router.push(`/products/${product.code}`)}
                                     />
                                     : <Card
                                         image={product.image}
                                         label1={product.name}
-                                        label2={product.price}
+                                        label2={product.price.toString()}
                                         label3={product.code}
                                     />
                                 }
