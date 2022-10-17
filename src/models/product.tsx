@@ -1,15 +1,18 @@
 export class Product {
+    _id: string;
     name: string;
-    price: string;
+    price: number;
     image: string;
     code: string;
 
-    constructor(
-        name: string,
-        price: string,
-        image: string,
-        code: string
-    ) {
+    constructor({ 
+        _id,
+        name,
+        price,
+        image,
+        code
+    }) {
+        this._id = _id;
         this.name = name;
         this.price = price;
         this.image = image;
@@ -18,6 +21,7 @@ export class Product {
 
     toJson() {
         return {
+            _id: this._id,
             name: this.name,
             price: this.price,
             image: this.image,
