@@ -1,0 +1,1 @@
+export const currency = (value: number) => `$${(value / 100).toFixed(2).replace(/.([^.]*)$/, ',$1')}`

@@ -22,7 +22,6 @@ const HomeScreen = () => {
     setLoading(true);
     getProductsToExternal().then((data) => {
       setData(data);      
-      console.log(data);
       setLoading(false);
     })
   }, []);
@@ -46,8 +45,7 @@ const HomeScreen = () => {
       <Column>
         <AppBar buttonLabel={login} buttonFunction={() => router.push('login/login')} />
         <Banner />
-        {data.length > 0 ? <ProductsList categoryProducts={data} /> : <Label text='Loading...' />}
-        
+        {data.length > 0 ? <ProductsList categoryProducts={data} /> : <Label text='Loading...' />}        
         <FooterContact />
         <FooterDev />
       </Column>

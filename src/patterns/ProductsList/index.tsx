@@ -9,6 +9,7 @@ import ProductsLine from "../ProductsLine";
 import { ColProductsStyled, ListProductsStyled, RowProductsStyled } from "./styled";
 import { useIntl } from "react-intl";
 import { CategoryProducts } from "../../models/categoryProducts";
+import { currency } from "../../utils/currency";
 
 interface PropsProductsList {
     categoryProducts?: CategoryProducts[];
@@ -52,7 +53,7 @@ const ProductListByTheme = (categoryProducts: CategoryProducts[]) => {
                                 <Card
                                     image={product.image}
                                     label1={product.name}
-                                    label2={product.price.toString()}
+                                    label2={currency(product.price)}
                                     link={seeProduct}
                                     onClick={() => router.push(`/products/${product.code}`)}
                                 />
