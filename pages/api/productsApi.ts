@@ -11,11 +11,9 @@ export async function getAllProductsToExternal() {
   return data.map(item => new CategoryProducts(item));  
 }
 
-export async function getProductsByCategoryToExternal() {
-  console.log('arrived here');
-  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_SERVER}category/111/products`);
-  const data: any[] = await response.json();
-  console.log(data);
+export async function getProductsByCategoryToExternal(code: number) {  
+  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_SERVER}category/${code}/products`);
+  const data: any[] = await response.json();  
   return data.length > 0 ? new CategoryProducts(data[0]) : null;
 }
 

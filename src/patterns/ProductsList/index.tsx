@@ -45,7 +45,7 @@ const ProductListByTheme = (categoryProducts: CategoryProducts[]) => {
                     paddingMobile="16px 32px"
                 >
                     <Row padding="16px 8px">
-                        <ProductsLine title={item.name}></ProductsLine>
+                        <ProductsLine title={item.name} codeCategory={item.code}></ProductsLine>
                     </Row>
                     <RowProductsStyled>
                         {item.products.map((product: Product, index: number) =>

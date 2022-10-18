@@ -8,6 +8,7 @@ import { useIntl } from "react-intl";
 interface ProductsLineProps {
     title: string;
     showSeeMore?: boolean;
+    codeCategory?: number;
 }
 
 const ProductsLine = ({ showSeeMore = true, ...props }: ProductsLineProps) => {
@@ -25,7 +26,7 @@ const ProductsLine = ({ showSeeMore = true, ...props }: ProductsLineProps) => {
             </TitleLineStyle>
             {showSeeMore ?
                 <SeeMoreStyled>
-                    <SeeMore text={seeAll} onClick={() => router.push('products/productList')} />
+                    <SeeMore text={seeAll} onClick={() => router.push(`/category/${props.codeCategory}`)} />
                 </SeeMoreStyled>
                 : null
             }

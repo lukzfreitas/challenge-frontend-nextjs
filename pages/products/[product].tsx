@@ -4,7 +4,6 @@ import { getAllProducts, getProduct, getProductsSimilar } from "../api/productsA
 
 const ProductDetails: any = ({ product }: any) => ProductDetailsScreen(product, getProductsSimilar());
 
-
 export const getStaticPaths: GetStaticPaths = () => {
   const paths = getAllProducts();
   return {
@@ -13,7 +12,7 @@ export const getStaticPaths: GetStaticPaths = () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = ({ params }: any) => {
+export const getStaticProps: GetStaticProps = ({ params }: any) => {  
   const product = getProduct(params.product);
   if (product) {
     return {

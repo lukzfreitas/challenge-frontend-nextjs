@@ -10,7 +10,7 @@ import { getProductsByCategoryToExternal } from "../../../pages/api/productsApi"
 import { CategoryProducts } from "../../models/categoryProducts";
 import Label from "../../components/Typograph/Label";
 
-const ProductListScreen = () => {
+const ProductListScreen = (code: number) => {
 
     const intl = useIntl();
 
@@ -21,10 +21,10 @@ const ProductListScreen = () => {
     const [data, setData]: [CategoryProducts, Function] = useState(null);
 
     useEffect(() => {
-        getProductsByCategoryToExternal().then((data: CategoryProducts) => {
+        getProductsByCategoryToExternal(code).then((data: CategoryProducts) => {
             setData(data);
         })
-    }, []);
+    }, [code]);
 
     return (
         <>

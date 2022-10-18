@@ -19,20 +19,20 @@ const HomeScreen = () => {
   useEffect(() => {
     setLoading(true);
     getAllProductsToExternal().then((data) => {
-      setData(data);      
+      setData(data);
       setLoading(false);
     })
   }, []);
 
 
-  
+
 
   const intl = useIntl();
 
   const router = useRouter();
 
-  const title = intl.formatMessage({id: "page.home.title"});    
-  const login = intl.formatMessage({id: "page.home.buttonLogin"});    
+  const title = intl.formatMessage({ id: "page.home.title" });
+  const login = intl.formatMessage({ id: "page.home.buttonLogin" });
 
   return (
     <>
@@ -43,7 +43,7 @@ const HomeScreen = () => {
       <Column>
         <AppBar buttonLabel={login} buttonFunction={() => router.push('login/login')} />
         <Banner />
-        {!isLoading ? <ProductsList categoryProducts={data} /> : <Label text='Loading...' />}        
+        {!isLoading ? <ProductsList categoryProducts={data} /> : <Label text='Loading...' />}
         <FooterContact />
         <FooterDev />
       </Column>
