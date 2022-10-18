@@ -8,6 +8,7 @@ import { useIntl } from "react-intl";
 import { useEffect, useState } from "react";
 import { getProductsByCategoryToExternal } from "../../../pages/api/productsApi";
 import { CategoryProducts } from "../../models/categoryProducts";
+import Label from "../../components/Typograph/Label";
 
 const ProductListScreen = () => {
 
@@ -18,33 +19,32 @@ const ProductListScreen = () => {
     const producstListLabel = intl.formatMessage({ id: "page.products.productsList" });
 
     const [data, setData]: [CategoryProducts, Function] = useState(null);
-    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
-        setLoading(true);
         getProductsByCategoryToExternal().then((data: CategoryProducts) => {
             setData(data);
-            console.log(data);
-            setLoading(false);
         })
     }, []);
 
-    return isLoading ? null :
-        (
-            <>
-                <Head>
-                    <title>{data.name}</title>
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                </Head>
-                <Column>
-                    <AppBar />
-                    <ProductsList productsList={data.products} title={allProducts} buttonLabel={addProduct} />
-                    <FooterContact />
-                    <FooterDev />
-                </Column>
-            </>
+    return (
+        <>
+            <Head>
+                <title>{data ? data.name : 'Carregando...'}</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
+            <Column>
+                <AppBar />
+                {
+                    data == null
+                        ? <Label text="Carregando..." />
+                        : <ProductsList productsList={data.products} title={allProducts} buttonLabel={addProduct} />
+                }
+                <FooterContact />
+                <FooterDev />
+            </Column>
+        </>
 
-        )
+    )
 }
 
 export default ProductListScreen;
