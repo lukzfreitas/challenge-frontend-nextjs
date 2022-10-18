@@ -16,14 +16,15 @@ interface PropsProductsList {
     productsList?: Product[];
     title?: string;
     buttonLabel?: string;
-    showSeeProduct?: boolean
+    showSeeProduct?: boolean;
+    codeCategory?: number
 }
 
 const ProductsList = ({ showSeeProduct = false, categoryProducts = [], productsList = [], ...props }: PropsProductsList) => {
     if (categoryProducts.length > 0) {
         return ProductListByTheme(categoryProducts)
     }
-    return ProductAllList(productsList, props.title, props.buttonLabel, showSeeProduct);
+    return ProductAllList(productsList, props.title, props.buttonLabel, showSeeProduct, props.codeCategory);
 }
 
 const ProductListByTheme = (categoryProducts: CategoryProducts[]) => {
@@ -71,6 +72,7 @@ const ProductAllList = (
     title: string,
     buttonLabel: string,
     showSeeProduct: boolean,
+    codeCategory: number
 ) => {
 
     const router = useRouter();
@@ -99,7 +101,7 @@ const ProductAllList = (
                         <Button
                             label={buttonLabel}
                             width="165px"
-                            onClick={() => router.push("product")} />
+                            onClick={() => router.push(`/productForm/${codeCategory}`)} />
                         : null
                 }
 

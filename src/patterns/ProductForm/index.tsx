@@ -12,7 +12,11 @@ import DeleteIcon from "../../components/DataDisplay/Icons/Delete";
 import { useIntl } from "react-intl";
 import { FormField } from "../../models/formField";
 
-const ProductForm = () => {
+interface ProductFormProps {
+    code: number;
+}
+
+const ProductForm = (props: ProductFormProps) => {
 
     const intl = useIntl();
 
@@ -28,7 +32,7 @@ const ProductForm = () => {
 
     const [files, setFiles]: [File[], Function] = useState([]);
 
-    const [category, setCategory]: [FormField, Function] = useState({ value: '', valid: true });
+    const [category, setCategory]: [FormField, Function] = useState({ value: props.code.toString(), valid: true });
 
     const [name, setName]: [FormField, Function] = useState({ value: '', valid: true });
 

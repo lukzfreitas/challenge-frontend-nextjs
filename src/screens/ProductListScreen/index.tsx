@@ -16,7 +16,6 @@ const ProductListScreen = (code: number) => {
 
     const allProducts = intl.formatMessage({ id: "page.products.allProducts" });
     const addProduct = intl.formatMessage({ id: "page.products.addProduct" });
-    const producstListLabel = intl.formatMessage({ id: "page.products.productsList" });
 
     const [data, setData]: [CategoryProducts, Function] = useState(null);
 
@@ -37,7 +36,12 @@ const ProductListScreen = (code: number) => {
                 {
                     data == null
                         ? <Label text="Carregando..." />
-                        : <ProductsList productsList={data.products} title={allProducts} buttonLabel={addProduct} />
+                        : <ProductsList
+                            productsList={data.products}
+                            title={allProducts}
+                            buttonLabel={addProduct}
+                            codeCategory={code}
+                        />
                 }
                 <FooterContact />
                 <FooterDev />

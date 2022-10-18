@@ -7,7 +7,7 @@ import ProductForm from "../../patterns/ProductForm";
 import ProductScreenStyled from "./styled";
 import { useIntl } from "react-intl";
 
-const ProductScreen = () => {
+const ProductScreen = (code: number) => {
 
     const intl = useIntl();
 
@@ -23,7 +23,7 @@ const ProductScreen = () => {
             <Column>
                 <AppBar buttonLabel={menuAdmin} />
                 <ProductScreenStyled>
-                    <ProductForm />
+                    <ProductForm code={code} />
                 </ProductScreenStyled>
                 <FooterContact />
                 <FooterDev />
