@@ -11,6 +11,8 @@ import { useState } from "react";
 import DeleteIcon from "../../components/DataDisplay/Icons/Delete";
 import { useIntl } from "react-intl";
 import { FormField } from "../../models/formField";
+import { postProduct } from "../../../pages/api/productsApi";
+import { Product } from "../../models/product";
 
 interface ProductFormProps {
     code: number;
@@ -64,6 +66,16 @@ const ProductForm = (props: ProductFormProps) => {
         description.value.trim() !== "" &&
         files.length > 0
     );
+
+    const saveProduct = () => {
+        const product = new Product({
+            name: name.value,
+            code: category.value,
+            price: price.value,
+            image: "https://lumiere-a.akamaihd.net/v1/images/og-generic_02031d2b.png?region=0%2C0%2C1200%2C1200",            
+        })
+        postProduct(product);
+    }
 
 
     return (
@@ -134,7 +146,7 @@ const ProductForm = (props: ProductFormProps) => {
                 />
             </Row>
             <Row padding="8px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Button label={addNewProduct} width="100%" disabled={!isValid()}></Button>
+                <Button label={addNewProduct} width="100%" disabled={!isValid()} onClick={() => saveProduct()}></Button>
             </Row>
         </Column>
     )
