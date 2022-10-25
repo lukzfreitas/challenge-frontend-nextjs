@@ -68,11 +68,11 @@ const ProductForm = (props: ProductFormProps) => {
     );
 
     const saveProduct = () => {
-        const product = new Product({
+        const product = new Product({            
             name: name.value,
-            code: category.value,
             price: price.value,
-            image: "https://lumiere-a.akamaihd.net/v1/images/og-generic_02031d2b.png?region=0%2C0%2C1200%2C1200",            
+            image: "https://lumiere-a.akamaihd.net/v1/images/og-generic_02031d2b.png?region=0%2C0%2C1200%2C1200",
+            category: category.value
         })
         postProduct(product);
     }

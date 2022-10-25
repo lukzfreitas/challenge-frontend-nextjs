@@ -7,23 +7,27 @@ const products = [
 ];
 
 export async function getAllProductsToExternal() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_SERVER}category/products`);
-  const data: any[] = await response.json();
-  console.log(data);
+  const response = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: '/category/products' });
+  const data: any[] = await response.data;
   return data.map(item => new CategoryProducts(item));
 }
 
 export async function getProductsByCategoryToExternal(code: number) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_SERVER}category/${code}/products`);
-  const data: any[] = await response.json();
+  const response = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: `/category/${code}/products` });
+  const data: any[] = await response.data;
   return data.length > 0 ? new CategoryProducts(data[0]) : null;
 }
 
-export async function postProduct(product: Product) {
-  const category = await axios.get(`${process.env.NEXT_PUBLIC_HOST_SERVER}category/${product.code}`);
-
-  const response = await axios.post(`${process.env.NEXT_PUBLIC_HOST_SERVER}product`, product.toJson());  
-  console.log(response);
+export async function postProduct(product: Product): Promise<Product> {
+  const categoryData = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: `/category/${product.category}` });
+  product.setCategory(categoryData.data._id);  
+  return await axios({
+    method: 'POST',
+    baseURL: process.env.NEXT_PUBLIC_HOST_SERVER,
+    url: '/product',
+    data: product.toJson(),
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  });
 }
 
 export function getAllProducts() {

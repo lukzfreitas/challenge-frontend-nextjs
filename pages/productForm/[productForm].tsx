@@ -10,8 +10,7 @@ export const getStaticPaths: GetStaticPaths = () => {
     }
 }
 
-export const getStaticProps: GetStaticProps = ({ params }: any) => {
-    console.log(params);
+export const getStaticProps: GetStaticProps = ({ params }: any) => {    
     if (params) {
         return {
             props: {
