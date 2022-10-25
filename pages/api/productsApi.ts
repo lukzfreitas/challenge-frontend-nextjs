@@ -1,32 +1,45 @@
+import axios from "axios";
+import { CategoryProducts } from "../../src/models/categoryProducts";
 import { Product } from "../../src/models/product";
 
-const products = [
-  new Product('Produto XYZ', 'R$ 60,00', '/mug_stropper.png', '111111'),
-  new Product('Produto XYZ', 'R$ 60,00', '/lego_darth.png', '111112'),
-  new Product('Produto XYZ', 'R$ 60,00', '/master_yoda.png', '111113'),
-  new Product('Produto XYZ', 'R$ 60,00', '/stormtropper.png', '111114'),
-  new Product('Produto XYZ', 'R$ 60,00', '/the_child.png', '111115'),
-  new Product('Produto XYZ', 'R$ 60,00', '/kylo_ren.png', '111116'),
-  new Product('Produto XYZ', 'R$ 60,00', '/xbox_control.png', '111117'),
-  new Product('Produto XYZ', 'R$ 60,00', '/ps5.png', '111118'),
-  new Product('Produto XYZ', 'R$ 60,00', '/nintendo.png', '111119'),
-  new Product('Produto XYZ', 'R$ 60,00', '/switch_control.png', '111120'),
-  new Product('Produto XYZ', 'R$ 60,00', '/xbox.png', '111121'),
-  new Product('Produto XYZ', 'R$ 60,00', '/game_boy.png', '111122'),
-  new Product('Produto XYZ', 'R$ 60,00', '/atari.png', '111123'),
-  new Product('Produto XYZ', 'R$ 60,00', '/shirt_snes.png', '111124'),
-  new Product('Produto XYZ', 'R$ 60,00', '/sonic.png', '111125'),
-  new Product('Produto XYZ', 'R$ 60,00', '/retro.png', '111126'),
-  new Product('Produto XYZ', 'R$ 60,00', '/ar.png', '111127'),
-  new Product('Produto XYZ', 'R$ 60,00', '/pikachu.png', '111128')
-];
-
-export async function getProductsToExternal() {  
-  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_SERVER}product`);
-  return response.json();    
+export async function getAllProductsToExternal(): Promise<Product[]> {
+  const response = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: '/products' });
+  const data: any[] = await response.data;
+  return data.map(item => new Product(item));
 }
 
-export function getAllProducts() {  
+export async function getProductByCodeToExternal(code: string): Promise<Product> {
+  return await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: `/products/${code}` })
+}
+
+export async function getAllProductsByCategoryToExternal() {
+  const response = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: '/category/products' });
+  const data: any[] = await response.data;
+  return data.map(item => new CategoryProducts(item));
+}
+
+export async function getProductsByCategoryToExternal(code: number) {
+  const response = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: `/category/${code}/products` });
+  const data: any[] = await response.data;
+  return data.length > 0 ? new CategoryProducts(data[0]) : null;
+}
+
+export async function postProduct(product: Product): Promise<Product> {
+  const categoryData = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: `/category/${product.category}` });
+  product.setCategory(categoryData.data._id);  
+  return await axios({
+    method: 'POST',
+    baseURL: process.env.NEXT_PUBLIC_HOST_SERVER,
+    url: '/product',
+    data: product.toJson(),
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  });
+}
+
+export async function getAllProducts() {
+  let products: Product[] = [];
+  products = await getAllProductsToExternal();
+  console.log(products);
   return products.map((p: Product) => {
     return {
       params: {
@@ -36,15 +49,11 @@ export function getAllProducts() {
   });
 }
 
-export function getProductsSimilar(): Product[] {
+export async function getProductsSimilar(): Promise<Product[]> {
+  const products: Product[] = await getAllProductsToExternal();
   return products.splice(0, 6);
 }
 
-
-export function getProduct(code: string): Product {  
-  const listProducts = products.filter(p => p.code == code);
-  if (listProducts.length > 0) {
-    return listProducts[0];
-  }
-  return products[0];
+export async function getProduct(code: string): Promise<Product>  {
+  return await getProductByCodeToExternal(code);  
 }

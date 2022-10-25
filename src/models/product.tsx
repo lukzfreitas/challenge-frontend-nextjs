@@ -1,27 +1,37 @@
 export class Product {
+    _id?: string;
+    code?: number;
     name: string;
-    price: string;
-    image: string;
-    code: string;
+    price: number;
+    image: string;    
+    category: string;
 
-    constructor(
-        name: string,
-        price: string,
-        image: string,
-        code: string
-    ) {
+    constructor({ 
+        _id = null,
+        code = null,
+        name,
+        price,
+        image,        
+        category
+    }) {
+        this._id = _id;
         this.name = name;
         this.price = price;
         this.image = image;
         this.code = code;
+        this.category = category;
+    }
+
+    setCategory(category: string) {
+        this.category = category;
     }
 
     toJson() {
-        return {
+        return {            
             name: this.name,
             price: this.price,
             image: this.image,
-            code: this.code
+            category: this.category
         }
     }
 }

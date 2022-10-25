@@ -5,6 +5,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true
   },
+  images: {
+    domains: ['lumiere-a.akamaihd.net'],
+  },
   i18n: {
     locales: ["en", "pt"],
     defaultLocale: "pt",

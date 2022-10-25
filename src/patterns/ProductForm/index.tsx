@@ -11,8 +11,14 @@ import { useState } from "react";
 import DeleteIcon from "../../components/DataDisplay/Icons/Delete";
 import { useIntl } from "react-intl";
 import { FormField } from "../../models/formField";
+import { postProduct } from "../../../pages/api/productsApi";
+import { Product } from "../../models/product";
 
-const ProductForm = () => {
+interface ProductFormProps {
+    code: number;
+}
+
+const ProductForm = (props: ProductFormProps) => {
 
     const intl = useIntl();
 
@@ -28,7 +34,7 @@ const ProductForm = () => {
 
     const [files, setFiles]: [File[], Function] = useState([]);
 
-    const [category, setCategory]: [FormField, Function] = useState({ value: '', valid: true });
+    const [category, setCategory]: [FormField, Function] = useState({ value: props.code.toString(), valid: true });
 
     const [name, setName]: [FormField, Function] = useState({ value: '', valid: true });
 
@@ -60,6 +66,16 @@ const ProductForm = () => {
         description.value.trim() !== "" &&
         files.length > 0
     );
+
+    const saveProduct = () => {
+        const product = new Product({            
+            name: name.value,
+            price: price.value,
+            image: "https://lumiere-a.akamaihd.net/v1/images/og-generic_02031d2b.png?region=0%2C0%2C1200%2C1200",
+            category: category.value
+        })
+        postProduct(product);
+    }
 
 
     return (
@@ -130,7 +146,7 @@ const ProductForm = () => {
                 />
             </Row>
             <Row padding="8px 0px 8px 0px" width="560px" widthTablet="100%" widthMobile="100%">
-                <Button label={addNewProduct} width="100%" disabled={!isValid()}></Button>
+                <Button label={addNewProduct} width="100%" disabled={!isValid()} onClick={() => saveProduct()}></Button>
             </Row>
         </Column>
     )

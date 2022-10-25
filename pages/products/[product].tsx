@@ -2,23 +2,21 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import ProductDetailsScreen from "../../src/screens/ProductDetailsScreen";
 import { getAllProducts, getProduct, getProductsSimilar } from "../api/productsApi";
 
-const ProductDetails: any = ({ product }: any) => ProductDetailsScreen(product, getProductsSimilar());
-
+const ProductDetails: any = async ({ product }: any) => ProductDetailsScreen(product, await getProductsSimilar());
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const paths = getAllProducts();
   return {
-    paths,
-    fallback: false
-  }
+    paths: [],
+    fallback: 'blocking'
+  }  
 }
 
-export const getStaticProps: GetStaticProps = ({ params }: any) => {
+export const getStaticProps: GetStaticProps = ({ params }: any) => {  
   const product = getProduct(params.product);
   if (product) {
     return {
       props: {
-        product: product.toJson(),
+        product: product,
       }
     }
   }
