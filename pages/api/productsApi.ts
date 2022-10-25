@@ -2,11 +2,17 @@ import axios from "axios";
 import { CategoryProducts } from "../../src/models/categoryProducts";
 import { Product } from "../../src/models/product";
 
-const products = [
+export async function getAllProductsToExternal(): Promise<Product[]> {
+  const response = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: '/products' });
+  const data: any[] = await response.data;
+  return data.map(item => new Product(item));
+}
 
-];
+export async function getProductByCodeToExternal(code: string): Promise<Product> {
+  return await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: `/products/${code}` })
+}
 
-export async function getAllProductsToExternal() {
+export async function getAllProductsByCategoryToExternal() {
   const response = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: '/category/products' });
   const data: any[] = await response.data;
   return data.map(item => new CategoryProducts(item));
@@ -30,7 +36,10 @@ export async function postProduct(product: Product): Promise<Product> {
   });
 }
 
-export function getAllProducts() {
+export async function getAllProducts() {
+  let products: Product[] = [];
+  products = await getAllProductsToExternal();
+  console.log(products);
   return products.map((p: Product) => {
     return {
       params: {
@@ -40,15 +49,11 @@ export function getAllProducts() {
   });
 }
 
-export function getProductsSimilar(): Product[] {
+export async function getProductsSimilar(): Promise<Product[]> {
+  const products: Product[] = await getAllProductsToExternal();
   return products.splice(0, 6);
 }
 
-
-export function getProduct(code: string): Product {
-  const listProducts = products.filter(p => p.code == code);
-  if (listProducts.length > 0) {
-    return listProducts[0];
-  }
-  return products[0];
+export async function getProduct(code: string): Promise<Product>  {
+  return await getProductByCodeToExternal(code);  
 }

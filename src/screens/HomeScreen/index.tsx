@@ -8,7 +8,7 @@ import FooterDev from '../../patterns/FooterDev';
 import ProductsList from '../../patterns/ProductsList';
 import { useIntl } from "react-intl";
 import { useEffect, useState } from 'react';
-import { getAllProductsToExternal } from '../../../pages/api/productsApi';
+import { getAllProductsByCategoryToExternal } from '../../../pages/api/productsApi';
 import Label from '../../components/Typograph/Label';
 
 const HomeScreen = () => {
@@ -18,14 +18,11 @@ const HomeScreen = () => {
 
   useEffect(() => {
     setLoading(true);
-    getAllProductsToExternal().then((data) => {
+    getAllProductsByCategoryToExternal().then((data) => {
       setData(data);
       setLoading(false);
     })
   }, []);
-
-
-
 
   const intl = useIntl();
 

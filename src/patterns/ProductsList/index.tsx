@@ -121,15 +121,15 @@ const ProductAllList = (
                                     ? <Card
                                         image={product.image}
                                         label1={product.name}
-                                        label2={product.price.toString()}
+                                        label2={currency(product.price)}
                                         link={'Ver produto'}
                                         onClick={() => router.push(`/products/${product.code}`)}
                                     />
                                     : <Card
                                         image={product.image}
                                         label1={product.name}
-                                        label2={product.price.toString()}
-                                        label3={product.code}
+                                        label2={currency(product.price)}
+                                        label3={product.code.toString()}
                                     />
                                 }
                             </ColProductsStyled>
