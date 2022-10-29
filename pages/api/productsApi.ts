@@ -12,8 +12,12 @@ export async function getProductByCodeToExternal(code: string): Promise<Product>
   return await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: `/products/${code}` })
 }
 
-export async function getAllProductsByCategoryToExternal() {
-  const response = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: '/category/products' });
+export async function getAllProductsByCategoryToExternal(limit: number = 6) {
+  const response = await axios({
+    method: 'GET',
+    baseURL: process.env.NEXT_PUBLIC_HOST_SERVER,
+    url: `/category/products?limit=${limit}`
+  });
   const data: any[] = await response.data;
   return data.map(item => new CategoryProducts(item));
 }
@@ -26,7 +30,7 @@ export async function getProductsByCategoryToExternal(code: number) {
 
 export async function postProduct(product: Product): Promise<Product> {
   const categoryData = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: `/category/${product.category}` });
-  product.setCategory(categoryData.data._id);  
+  product.setCategory(categoryData.data._id);
   return await axios({
     method: 'POST',
     baseURL: process.env.NEXT_PUBLIC_HOST_SERVER,
@@ -54,6 +58,6 @@ export async function getProductsSimilar(): Promise<Product[]> {
   return products.splice(0, 6);
 }
 
-export async function getProduct(code: string): Promise<Product>  {
-  return await getProductByCodeToExternal(code);  
+export async function getProduct(code: string): Promise<Product> {
+  return await getProductByCodeToExternal(code);
 }
