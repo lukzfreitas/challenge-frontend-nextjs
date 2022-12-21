@@ -43,7 +43,6 @@ export async function postProduct(product: Product): Promise<Product> {
 export async function getAllProducts() {
   let products: Product[] = [];
   products = await getAllProductsToExternal();
-  console.log(products);
   return products.map((p: Product) => {
     return {
       params: {
