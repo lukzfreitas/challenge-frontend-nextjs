@@ -9,7 +9,7 @@ import ProductsList from '../../patterns/ProductsList';
 import { useIntl } from "react-intl";
 import { useEffect, useState } from 'react';
 import { getAllProductsByCategoryToExternal } from '../../../pages/api/productsApi';
-import Label from '../../components/Typograph/Label';
+import ProductListLoader from '../../patterns/ProductListLoader';
 
 const HomeScreen = () => {
 
@@ -39,8 +39,8 @@ const HomeScreen = () => {
       </Head>
       <Column>
         <AppBar buttonLabel={login} buttonFunction={() => router.push('login/login')} />
-        <Banner />
-        {!isLoading ? <ProductsList categoryProducts={data} /> : <Label text='Loading...' />}
+        <Banner />        
+        {!isLoading ? <ProductsList categoryProducts={data} /> : <ProductListLoader/>}
         <FooterContact />
         <FooterDev />
       </Column>
