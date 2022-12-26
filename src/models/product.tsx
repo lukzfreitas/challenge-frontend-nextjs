@@ -28,10 +28,15 @@ export class Product {
 
     toJson() {
         return {            
+            code: this.code,
             name: this.name,
             price: this.price,
             image: this.image,
             category: this.category
         }
+    }    
+
+    toString() {
+        return `{ name: ${this.name}, price: ${this.price}, image: ${this.image}, category: ${this.category} }`
     }
 }

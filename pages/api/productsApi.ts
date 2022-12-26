@@ -9,7 +9,8 @@ export async function getAllProductsToExternal(): Promise<Product[]> {
 }
 
 export async function getProductByCodeToExternal(code: string): Promise<Product> {
-  return await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: `/products/${code}` })
+  const response = await axios({ method: 'GET', baseURL: process.env.NEXT_PUBLIC_HOST_SERVER, url: `/products/${code}` });  
+  return new Product(response.data);
 }
 
 export async function getAllProductsByCategoryToExternal(limit: number = 6) {
@@ -57,6 +58,6 @@ export async function getProductsSimilar(): Promise<Product[]> {
   return products.splice(0, 6);
 }
 
-export async function getProduct(code: string): Promise<Product> {
-  return await getProductByCodeToExternal(code);
+export async function getProduct(code: string): Promise<Product> {  
+  return await getProductByCodeToExternal(code);  
 }
