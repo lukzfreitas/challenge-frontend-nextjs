@@ -7,8 +7,9 @@ import FooterDev from "../../patterns/FooterDev";
 import ProductDetails from "../../patterns/ProductDetails";
 import ProductsList from "../../patterns/ProductsList";
 
-const ProductDetailsScreen = (product: Product, productListSimilar: Product[]) => {
-
+const ProductDetailsScreen = (productJson: any, productListSimilarJson: any[]) => {
+  const product = new Product(productJson);
+  const productListSimilar = productListSimilarJson.map(p => new Product(p));  
   return (
     <>
       <Head>
