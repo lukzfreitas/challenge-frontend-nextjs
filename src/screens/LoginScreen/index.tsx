@@ -1,37 +1,36 @@
-import Head from "next/head";
-import { useState } from "react";
-import { Column } from "../../components/Grid/Column";
-import { Row } from "../../components/Grid/Row";
-import Button from "../../components/Inputs/Button";
-import { Input } from "../../components/Inputs/Input";
-import AppBar from "../../components/Surfaces/AppBar";
-import Label from "../../components/Typograph/Label";
-import FooterContact from "../../patterns/FooterContact";
-import FooterDev from "../../patterns/FooterDev";
-import { validateEmail } from "../../utils/validate";
-import LoginScreenStyled from "./styled";
-import { useIntl } from "react-intl";
-import { postLogin } from "../../../pages/api/loginApi";
-import { getAllProductsByCategoryToExternal } from "../../../pages/api/productsApi";
-import { useRouter } from "next/router";
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import { Column } from '../../components/Grid/Column';
+import { Row } from '../../components/Grid/Row';
+import Button from '../../components/Inputs/Button';
+import { Input } from '../../components/Inputs/Input';
+import AppBar from '../../components/Surfaces/AppBar';
+import Label from '../../components/Typograph/Label';
+import FooterContact from '../../patterns/FooterContact';
+import FooterDev from '../../patterns/FooterDev';
+import { validateEmail } from '../../utils/validate';
+import LoginScreenStyled from './styled';
+import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
+import { getProviders, getSession, signIn, useSession } from 'next-auth/react';
 
 const LoginScreen = () => {
-
   const router = useRouter();
   const intl = useIntl();
+  const { data: session, status } = useSession();
 
-  const beginSession = intl.formatMessage({ id: "page.login.beginSession" });
-  const typeYourEmail = intl.formatMessage({ id: "page.login.typeYourEmail" });
+  const beginSession = intl.formatMessage({ id: 'page.login.beginSession' });
+  const typeYourEmail = intl.formatMessage({ id: 'page.login.typeYourEmail' });
   const typeYourPassword = intl.formatMessage({
-    id: "page.login.typeYourPassword",
+    id: 'page.login.typeYourPassword',
   });
-  const login = intl.formatMessage({ id: "page.home.buttonLogin" });
+  const login = intl.formatMessage({ id: 'page.home.buttonLogin' });
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
 
   const [validEmail, setValidEmail] = useState(false);
 
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
 
   const [validPassword, setValidPassword] = useState(false);
 
@@ -47,16 +46,12 @@ const LoginScreen = () => {
     setPassword(text);
   };
 
-  const formIsValid = async () => {    
+  const formIsValid = async () => {
     try {
-      await postLogin({
-        email: email,
-        password: password,
-      });
-      router.push('/');
+      signIn('credentials', { email, password, callbackUrl: '/' });
     } catch (e) {
       setValidForm(false);
-    }    
+    }
   };
 
   return (
@@ -78,7 +73,7 @@ const LoginScreen = () => {
               text={beginSession}
               textAlign="center"
               fontWeight={700}
-              fontSize={"16px"}
+              fontSize={'16px'}
             ></Label>
           </Row>
           <Row
@@ -93,7 +88,7 @@ const LoginScreen = () => {
               value={email}
               placeholder={typeYourEmail}
               invalid={!validForm}
-              invalidMessage={"Email não cadastrado ou incorreto"}
+              invalidMessage={'Email não cadastrado ou incorreto'}
             />
           </Row>
           <Row
@@ -108,7 +103,7 @@ const LoginScreen = () => {
               value={password}
               placeholder={typeYourPassword}
               invalid={!validForm}
-              invalidMessage={"Senaha não cadastrada ou incorreta"}
+              invalidMessage={'Senaha não cadastrada ou incorreta'}
             />
           </Row>
           <Row
@@ -133,3 +128,19 @@ const LoginScreen = () => {
 };
 
 export default LoginScreen;
+
+export async function getServerSideProps(context) {
+  const { req } = context;
+  const session = await getSession({ req });
+  const providers = await getProviders();
+  if (session) {
+    return {
+      redirect: { destination: '/' },
+    };
+  }
+  return {
+    props: {
+      providers,
+    },
+  };
+}
