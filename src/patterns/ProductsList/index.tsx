@@ -10,6 +10,7 @@ import { ListProductsStyled, GridProductsStyled } from "./styled";
 import { useIntl } from "react-intl";
 import { CategoryProducts } from "../../models/categoryProducts";
 import { currency } from "../../utils/currency";
+import { useSession } from "next-auth/react";
 
 interface PropsProductsList {
   categoryProducts?: CategoryProducts[];
@@ -87,6 +88,7 @@ const ProductAllList = (
   codeCategory: number
 ) => {
   const router = useRouter();
+  const { data: session, status } = useSession()
 
   return (
     <ListProductsStyled>
@@ -106,7 +108,7 @@ const ProductAllList = (
             color="#464646"
           />
         ) : null}
-        {buttonLabel ? (
+        {buttonLabel && status === 'authenticated' ? (
           <Button
             label={buttonLabel}
             width="165px"

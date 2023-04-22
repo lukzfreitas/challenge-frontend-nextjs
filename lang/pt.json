@@ -1,6 +1,7 @@
 {
     "page.home.title": "Início",
     "page.home.buttonLogin": "Entrar",
+    "page.home.buttonLogout": "Sair",
     "page.home.developedBy": "Desenvolvido por",
     "page.home.inputSearch": "O que deseja encontrar?",
     "page.home.bannerTitle": "Dezembro Promocional",
