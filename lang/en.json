@@ -1,6 +1,7 @@
 {
     "page.home.title": "Home",
     "page.home.buttonLogin": "Login",
+    "page.home.buttonLogout": "Logout",
     "page.home.developedBy": "Developed by",
     "page.home.inputSearch": "What do you want to find?",
     "page.home.bannerTitle": "Promotional december",
