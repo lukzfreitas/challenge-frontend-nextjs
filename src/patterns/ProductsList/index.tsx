@@ -1,16 +1,18 @@
-import { useRouter } from "next/router";
-import { ColN } from "../../components/Grid/ColumnN";
-import { Row } from "../../components/Grid/Row";
-import Button from "../../components/Inputs/Button";
-import Card from "../../components/Surfaces/Card";
-import Label from "../../components/Typograph/Label";
-import { Product } from "../../models/product";
-import ProductsLine from "../ProductsLine";
-import { ListProductsStyled, GridProductsStyled } from "./styled";
-import { useIntl } from "react-intl";
-import { CategoryProducts } from "../../models/categoryProducts";
-import { currency } from "../../utils/currency";
-import { useSession } from "next-auth/react";
+import { useRouter } from 'next/router';
+import { ColN } from '../../components/Grid/ColumnN';
+import { Row } from '../../components/Grid/Row';
+import Button from '../../components/Inputs/Button';
+import Card from '../../components/Surfaces/Card';
+import Label from '../../components/Typograph/Label';
+import { Product } from '../../models/product';
+import ProductsLine from '../ProductsLine';
+import { ListProductsStyled, GridProductsStyled } from './styled';
+import { CategoryProducts } from '../../models/categoryProducts';
+import { currency } from '../../utils/currency';
+import { useSession } from 'next-auth/react';
+import { useState } from 'react';
+import { useListProductsCategory } from '../../hooks/useProduct';
+import Products from '../Products';
 
 interface PropsProductsList {
   categoryProducts?: CategoryProducts[];
@@ -35,22 +37,19 @@ const ProductsList = ({
     props.title,
     props.buttonLabel,
     showSeeProduct,
-    props.codeCategory
+    props.codeCategory,
   );
 };
 
 const ProductListByTheme = (categoryProducts: CategoryProducts[]) => {
-  const router = useRouter();
-
-  const intl = useIntl();
-
-  const seeProduct = intl.formatMessage({ id: "page.home.seeProduct" });
+  const { categoriesProduct } =
+    useListProductsCategory(categoryProducts);
 
   return (
     <ListProductsStyled>
-      {categoryProducts.map((item, index) => (
+      {categoriesProduct.map((item, indexCategory) => (
         <ColN
-          key={index}
+          key={indexCategory}
           nCols={1}
           padding="64px 152px 0px 152px"
           paddingTablet="32px"
@@ -62,18 +61,7 @@ const ProductListByTheme = (categoryProducts: CategoryProducts[]) => {
               codeCategory={item.code}
             ></ProductsLine>
           </Row>
-          <GridProductsStyled>
-            {item.products.map((product: Product, index: number) => (
-              <Card
-                key={index}
-                image={product.image}
-                label1={product.name}
-                label2={currency(product.price)}
-                link={seeProduct}
-                onClick={() => router.push(`/products/${product.code}`)}
-              />
-            ))}
-          </GridProductsStyled>
+          <Products key={item._id} products={item.products} />
         </ColN>
       ))}
     </ListProductsStyled>
@@ -85,10 +73,13 @@ const ProductAllList = (
   title: string,
   buttonLabel: string,
   showSeeProduct: boolean,
-  codeCategory: number
+  codeCategory: number,
 ) => {
   const router = useRouter();
-  const { data: session, status } = useSession()
+
+  const { data: session, status } = useSession();
+
+  const [products, setProducts]: [Product[], Function] = useState(productList);
 
   return (
     <ListProductsStyled>
@@ -124,15 +115,17 @@ const ProductAllList = (
         paddingMobile="16px 32px"
       >
         <GridProductsStyled>
-          {productList.map((product, index) =>
+          {products.map((product, index) =>
             showSeeProduct ? (
               <Card
                 key={index}
                 image={product.image}
                 label1={product.name}
                 label2={currency(product.price)}
-                link={"Ver produto"}
+                link={'Ver produto'}
                 onClick={() => router.push(`/products/${product.code}`)}
+                onDelete={() => console.log('delete')}
+                onEdit={() => {}}
               />
             ) : (
               <Card
@@ -141,8 +134,10 @@ const ProductAllList = (
                 label1={product.name}
                 label2={currency(product.price)}
                 label3={product.code.toString()}
+                onDelete={() => console.log('delete')}
+                onEdit={() => {}}
               />
-            )
+            ),
           )}
         </GridProductsStyled>
       </Row>

@@ -7,6 +7,8 @@ interface ImageEditProps {
   height: string;
   width: string;
   alt?: string;
+  onEditEvent?: Function;
+  onDeleteEvent?: Function;
 }
 
 const ImageEditComponent = (props: ImageEditProps) => {
@@ -21,10 +23,10 @@ const ImageEditComponent = (props: ImageEditProps) => {
         />
       </div>
       <div style={{ position: 'absolute', top: 10, right: 50 }}>
-        <DeleteIcon color='white' />
+        <DeleteIcon color="white" onClick={() => props.onDeleteEvent()} />
       </div>
       <div style={{ position: 'absolute', top: 10, right: 5 }}>
-        <EditIcon color='white' />
+        <EditIcon color="white" onClick={() => props.onEditEvent()} />
       </div>
     </div>
   );

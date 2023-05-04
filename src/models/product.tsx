@@ -26,8 +26,21 @@ export class Product {
         this.category = category;
     }
 
+    setName(name: string) {
+        this.name = name;
+    }
+
+    setPrice(price: number) {
+        this.price = price;
+    }
+
+    setImage(image: string) {
+        this.image = image;
+    }
+
     toJson() {
-        return {            
+        return {
+            id: this._id,            
             code: this.code,
             name: this.name,
             price: this.price,
