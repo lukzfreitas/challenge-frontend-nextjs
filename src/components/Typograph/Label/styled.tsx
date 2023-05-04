@@ -17,5 +17,3 @@ export const LabelStyle = styled.div<PropsLabelStyle>`
     padding: 8px 0px;  
     text-align: ${(p: PropsLabelStyle) => p.textAlign};
 `
-
-

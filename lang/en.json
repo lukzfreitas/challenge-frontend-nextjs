@@ -25,6 +25,8 @@
     "page.products.allProducts": "All products",
     "page.products.addProduct": "Add product",
     "page.products.loading": "Loading",
+    "page.products.confirm": "Confirm",
+    "page.products.cancel": "Cancel",
     "page.newProduct.menuAdmin": "Menu admin",
     "page.newProduct.registerProduct": "Register Product",
     "page.newProduct.addNewProduct": "Add new product",

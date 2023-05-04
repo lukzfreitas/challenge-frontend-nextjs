@@ -7,23 +7,13 @@ import FooterContact from '../../patterns/FooterContact';
 import FooterDev from '../../patterns/FooterDev';
 import ProductsList from '../../patterns/ProductsList';
 import { useIntl } from 'react-intl';
-import { useEffect, useState } from 'react';
-import { getAllProductsByCategoryToExternal } from '../../../pages/api/productsApi';
 import ProductListLoader from '../../patterns/ProductListLoader';
 import { signOut, useSession } from 'next-auth/react';
+import { useListProductsCategory } from '../../hooks/useProduct';
 
 const HomeScreen = () => {
-  const [data, setData] = useState([]);
-  const [isLoading, setLoading] = useState(false);
   const { data: session, status } = useSession();
-
-  useEffect(() => {
-    setLoading(true);
-    getAllProductsByCategoryToExternal().then((data) => {
-      setData(data);
-      setLoading(false);
-    });
-  }, []);
+  const { categoriesProduct, isLoading } = useListProductsCategory();
 
   const intl = useIntl();
 
@@ -48,7 +38,7 @@ const HomeScreen = () => {
         />
         <Banner />
         {!isLoading ? (
-          <ProductsList categoryProducts={data} />
+          <ProductsList categoryProducts={categoriesProduct} />
         ) : (
           <ProductListLoader />
         )}
