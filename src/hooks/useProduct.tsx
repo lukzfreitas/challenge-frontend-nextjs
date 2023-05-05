@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react';
-import {
-  deleteProductApi,
-  getAllProductsByCategoryToExternal,
-  updateProductApi,
-} from '../../pages/api/productsApi';
+import { useState } from 'react';
+import useProductApi from '../../pages/api/productsApi';
 import { CategoryProducts } from '../models/categoryProducts';
 import { Product } from '../models/product';
 
 interface useListProductsCategoryProps {
   categoriesProduct: CategoryProducts[];
   isLoading: boolean;
+  getAllProductsByCategory: Function;
 }
 
 export const useListProductsCategory = (
@@ -20,19 +17,16 @@ export const useListProductsCategory = (
     Function,
   ] = useState(categoriesProductProps);
   const [isLoading, setLoading] = useState(false);
+  const { getAllProductsByCategoryToExternal } = useProductApi();
 
   const getAllProductsByCategory = async () => {
-    setLoading(true);
+    setLoading(true);    
     const products = await getAllProductsByCategoryToExternal();
     setCategoriesProduct(products);
-    setLoading(false);
-  };
+    setLoading(false);    
+  };  
 
-  useEffect(() => {
-    getAllProductsByCategory();
-  }, []);
-
-  return { categoriesProduct, isLoading };
+  return { categoriesProduct, isLoading, getAllProductsByCategory };
 };
 
 interface useProductProps {
@@ -41,25 +35,28 @@ interface useProductProps {
   setName: Function;
   setPrice: Function;
   setCancelChanges: Function;
+  createProduct: (product: Product) => {};
   updateProduct: (product: Product) => {};
 }
 
-export const useProduct = (productToUpdate: Product): useProductProps => {
+export const useProduct = (productToUpdate?: Product): useProductProps => {
   const [isLoading, setLoading] = useState(false);
   const [product, setProduct] = useState(productToUpdate);
-  const [productOriginal, setProductOriginal] = useState(productToUpdate);
-
-  // call api external
+  const [productOriginal, _] = useState(productToUpdate);
+  const { createProductApi, updateProductApi } = useProductApi();
 
   const updateProduct = async () => {
     setLoading(true);
-    const productUpdated = await updateProductApi(product);    
-    productUpdated.setImage(product.image);
+    const productUpdated = await updateProductApi(product);
     setProduct(productUpdated);
     setLoading(false);
   };
 
-  // change state of product
+  const createProduct = async (product: Product) => {
+    setLoading(true);
+    await createProductApi(product);
+    setLoading(false);
+  };
 
   const setCancelChanges = () => {
     setProduct(productOriginal);
@@ -75,5 +72,13 @@ export const useProduct = (productToUpdate: Product): useProductProps => {
     setProduct(product);
   };
 
-  return { product, isLoading, setName, setPrice, updateProduct, setCancelChanges };
+  return {
+    product,
+    isLoading,
+    setName,
+    setPrice,
+    createProduct,
+    updateProduct,
+    setCancelChanges,
+  };
 };
