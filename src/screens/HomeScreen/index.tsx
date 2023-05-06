@@ -10,10 +10,15 @@ import { useIntl } from 'react-intl';
 import ProductListLoader from '../../patterns/ProductListLoader';
 import { signOut, useSession } from 'next-auth/react';
 import { useListProductsCategory } from '../../hooks/useProduct';
+import { useEffect } from 'react';
 
 const HomeScreen = () => {
   const { data: session, status } = useSession();
-  const { categoriesProduct, isLoading } = useListProductsCategory();
+  const { categoriesProduct, isLoading, getAllProductsByCategory } = useListProductsCategory();
+
+  useEffect(() => {
+    getAllProductsByCategory();
+  }, [])
 
   const intl = useIntl();
 
