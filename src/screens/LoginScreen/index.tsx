@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
 import { Column } from '../../components/Grid/Column';
 import { Row } from '../../components/Grid/Row';
 import Button from '../../components/Inputs/Button';
@@ -8,16 +7,13 @@ import AppBar from '../../components/Surfaces/AppBar';
 import Label from '../../components/Typograph/Label';
 import FooterContact from '../../patterns/FooterContact';
 import FooterDev from '../../patterns/FooterDev';
-import { validateEmail } from '../../utils/validate';
 import LoginScreenStyled from './styled';
 import { useIntl } from 'react-intl';
-import { useRouter } from 'next/router';
-import { getProviders, getSession, signIn, useSession } from 'next-auth/react';
+import { getProviders, getSession } from 'next-auth/react';
+import useLogin from '../../hooks/useLogin';
 
 const LoginScreen = () => {
-  const router = useRouter();
   const intl = useIntl();
-  const { data: session, status } = useSession();
 
   const beginSession = intl.formatMessage({ id: 'page.login.beginSession' });
   const typeYourEmail = intl.formatMessage({ id: 'page.login.typeYourEmail' });
@@ -25,34 +21,19 @@ const LoginScreen = () => {
     id: 'page.login.typeYourPassword',
   });
   const login = intl.formatMessage({ id: 'page.home.buttonLogin' });
+  const wrongEmail = intl.formatMessage({ id: 'page.login.wrongEmail' });
+  const wrongPassword = intl.formatMessage({ id: 'page.login.wrongPassword' });
 
-  const [email, setEmail] = useState('');
-
-  const [validEmail, setValidEmail] = useState(false);
-
-  const [password, setPassword] = useState('');
-
-  const [validPassword, setValidPassword] = useState(false);
-
-  const [validForm, setValidForm] = useState(true);
-
-  const emailIsValid = (text: string) => {
-    setValidEmail(validateEmail(text));
-    setEmail(text);
-  };
-
-  const passwordIsValid = (text: string) => {
-    setValidPassword(text.length > 4);
-    setPassword(text);
-  };
-
-  const formIsValid = async () => {
-    try {
-      signIn('credentials', { email, password, callbackUrl: '/' });
-    } catch (e) {
-      setValidForm(false);
-    }
-  };
+  const {
+    email,
+    password,
+    passwordIsValid,
+    validForm,
+    validEmail,
+    validPassword,
+    formIsValid,
+    emailIsValid,
+  } = useLogin();
 
   return (
     <>
@@ -88,7 +69,7 @@ const LoginScreen = () => {
               value={email}
               placeholder={typeYourEmail}
               invalid={!validForm}
-              invalidMessage={'Email não cadastrado ou incorreto'}
+              invalidMessage={wrongEmail}
             />
           </Row>
           <Row
@@ -103,7 +84,7 @@ const LoginScreen = () => {
               value={password}
               placeholder={typeYourPassword}
               invalid={!validForm}
-              invalidMessage={'Senaha não cadastrada ou incorreta'}
+              invalidMessage={wrongPassword}
             />
           </Row>
           <Row

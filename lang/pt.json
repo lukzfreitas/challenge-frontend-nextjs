@@ -21,6 +21,8 @@
     "page.login.beginSession": "Iniciar Sessão",
     "page.login.typeYourEmail": "Escreva seu email",
     "page.login.typeYourPassword": "Escreva sua senha",
+    "page.login.wrongEmail": "Email não cadastrado ou incorreto",
+    "page.login.wrongPassword": "Senha não cadastrada ou incorreta",
     "page.products.productsList": "Products List",
     "page.products.allProducts": "Todos os produtos",
     "page.products.addProduct": "Adicionar produto",

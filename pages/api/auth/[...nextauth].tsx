@@ -8,6 +8,7 @@ export const authOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
+      type: 'credentials',
       credentials: {
         email: {
           label: 'Email',
@@ -19,7 +20,7 @@ export const authOptions = {
           type: 'password',
           placeholder: 'Enter Password',
         },
-      },
+      },      
       async authorize(credentials) {
         const res = await axios({
           method: 'POST',

@@ -6,7 +6,6 @@ import FooterDev from '../../patterns/FooterDev';
 import ProductsList from '../../patterns/ProductsList';
 import { useIntl } from 'react-intl';
 import { useEffect, useState } from 'react';
-import { CategoryProducts } from '../../models/categoryProducts';
 import ProductListLoader from '../../patterns/ProductListLoader';
 import { useProducts } from '../../hooks/useProducts';
 
@@ -21,7 +20,7 @@ const ProductListScreen = (code: number) => {
 
   useEffect(() => {
     getCategoriesProducts(code);
-  }, []);
+  }, [code, getCategoriesProducts]);
 
   return (
     <>

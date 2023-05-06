@@ -21,6 +21,8 @@
     "page.login.beginSession": "Begin Session",
     "page.login.typeYourEmail": "Type your email",
     "page.login.typeYourPassword": "Type your password",
+    "page.login.wrongEmail": "Email don't registered or wrong",
+    "page.login.wrongPassword": "Password don't registered or wrong",
     "page.products.productsList": "Products List",
     "page.products.allProducts": "All products",
     "page.products.addProduct": "Add product",
