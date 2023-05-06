@@ -6,12 +6,12 @@ import { useSession } from 'next-auth/react';
 const useProductApi = () => {
   const { data: session, status } = useSession();
 
-  const headers = () => {
+  const headers = (isAuthenticated: boolean = false) => {
     const auth: any = session;
-    if (status === 'authenticated') {
+    if (status === 'authenticated' && isAuthenticated) {
       return {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Bearer ${auth.accessToken}`,
+        'Authorization': `Bearer ${auth.accessToken}`,
       };
     }
     return { 'Content-Type': 'application/x-www-form-urlencoded' };
@@ -29,7 +29,7 @@ const useProductApi = () => {
       baseURL: process.env.NEXT_PUBLIC_HOST_SERVER,
       url: '/products',
       data: product.toJson(),
-      headers: headers(),
+      headers: headers(true),
     });
   };
 
@@ -82,17 +82,17 @@ const useProductApi = () => {
       baseURL: process.env.NEXT_PUBLIC_HOST_SERVER,
       url: `/products/update/${product._id}`,
       data: product.toJson(),
-      headers: headers(),
+      headers: headers(true),
     });
     return new Product(response.data);
   };
 
-  const deleteProductApi = async (product: Product) => {
+  const deleteProductApi = async (product: Product): Promise<void> => {
     return await axios({
       method: 'POST',
       baseURL: process.env.NEXT_PUBLIC_HOST_SERVER,
       url: `/products/delete/${product._id}`,
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: headers()
     });
   };
 

@@ -1,25 +1,28 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import ProductDetailsScreen from "../../src/screens/ProductDetailsScreen";
-import { getProduct, getProductsSimilar } from "../api/productsApi";
-import { Product } from "../../src/models/product";
+import { GetStaticPaths, GetStaticProps } from 'next';
+import ProductDetailsScreen from '../../src/screens/ProductDetailsScreen';
+import { Product } from '../../src/models/product';
+import useProductApi from '../api/productsApi';
 
-const ProductDetails: any = ({ product, productsSimiliar }: any) => ProductDetailsScreen(product, productsSimiliar);  
+const ProductDetails: any = ({ product, productsSimiliar }: any) =>
+  ProductDetailsScreen(product, productsSimiliar);
 
 export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: [],
-    fallback: "blocking",
+    fallback: 'blocking',
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { getProduct, getProductsSimilar } = useProductApi();
   const product: Product = await getProduct(params.product);
   const products: Product[] = await getProductsSimilar();
   if (product) {
     return {
       props: {
         product: product.toJson(),
-        productsSimiliar: products.map(p => p.toJson())
+        productsSimiliar: products.map((p) => p.toJson()),
       },
     };
   }
